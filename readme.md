@@ -29,7 +29,6 @@ In case you are looking for something that you can't find in the following links
     - [NetScaler GCP GDM Templates](#automation-toolkit-repositories)
     - [Terraform Cloud Scripts](#automation-toolkit-repositories)
 - [Examples Library](#examples-library)
-- [Golden Templates](#golden-templates)
 <br/><br/>
 
 # Community 
@@ -136,16 +135,5 @@ We have created many examples of how to use our toolkit. These examples cover di
 | [NetScaler ADM Automation Scripts](https://github.com/citrix/terraform-provider-citrixadm/tree/master/examples) | Terraform configuration scripts that cover different examples of how to use the NetScaler ADM Terraform provider. |
 | [Ansible Playbooks for ADC and ADM](https://github.com/citrix/citrix-adc-ansible-modules/tree/master#adc-modules) | Ansible Playbooks that cover different examples of how to use the NetScaler Ansible Modules to configure different features on ADC or ADM. |
 <br/><br/>
-
-# Golden Templates 
-Using a predefined Infrastructure-as-Code template allows you to deploy systems consistently with clear and known configuration that follows NetScaler best practices. 
-
-Please follow the links below, to get access to our the templates that have been created from our NetScaler Automation Toolkit team and verified from our experts from each one of the features teams. 
-
-|            Title            |            Details            |   
-|-----------------------------|-------------------------------|
-| [NetScaler Gateway configurations: LDAP - RADIUS with Terraform](/golden_templates/gateway/ldap-radius) | Learn how to use our Golden Terraform templates to configure RADIUS - LDAP by followng NetScaler best practices. |
-<br/><br/>
-
 
 ![Alt text](/assets/netscalerautomationtoolkit.png "NetScaler Automation Toolkit")
