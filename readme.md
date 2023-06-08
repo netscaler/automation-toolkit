@@ -38,15 +38,15 @@ NetScaler Automation Toolkit consists of solutions that are open-sourced and we 
 
 # Events 
 Do you want to learn more about the work we are doing? What are the new Automation Toolkit updates? Or check a technical session? Join our upcoming webinars and live demo sessions or watch the recordings on demand.
-|            Title            |            Details            |            Date            | 
-|-----------------------------|-------------------------------|----------------------------|
-| [Automating Gateway Configurations with Golden Terraform templates:<br/> LDAP - RADIUS configuration.](https://community.netscaler.com/s/webinar/a078b000010v51jAAA/automating-gateway-configurations-with-golden-terraform-templates-ldap-radius) | NetScaler Live Demo | Wednesday, Jun 07th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET |
-| [NetScaler Automation Toolkit Updates + <br/> Learning Material & Training Labs for Automation Toolkit](https://community.netscaler.com/s/webinar/a078b000010v2BQAAY/netscaler-connect-webinar-25th-may) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, May 25th, 2023 <br/>10:30 AM CEST |
-| [NetScaler Automation Toolkit Updates + <br/> Learning Material & Training Labs for Automation Toolkit](https://community.netscaler.com/s/webinar/a078b000010v2BQAAY/netscaler-connect-webinar-25th-may) | NetScaler Connect Webinar <br/> Americas | Thursday, May 25th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST |
-| [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, Apr 27th, 2023 <br/>10:30 AM CEST | 
-| [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Americas | Thursday, Apr 27th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST | 
-| [Transforming a Linux Host into a NetScaler BLX with Terraform:<br/> A Hands-On Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uvztAAA/transforming-a-linux-host-into-a-netscaler-blx-with-terraform) | NetScaler Live Demo | Wednesday, Feb 22nd, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET |
-| [Automating NetScaler Configurations Using Terraform:<br/> A Hands-on Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uwOMAAY/automating-netscaler-configurations-using-terraform-a-handson-demonstration) | NetScaler Live Demo | Monday, Feb 06th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET |
+|            Title            |            Details            |            Date            |             Demo             | 
+|-----------------------------|-------------------------------|----------------------------|----------------------------|
+| [Automating Gateway Configurations with Golden Terraform templates:<br/> LDAP - RADIUS configuration.](https://community.netscaler.com/s/webinar/a078b000010v51jAAA/automating-gateway-configurations-with-golden-terraform-templates-ldap-radius) | NetScaler Live Demo | Wednesday, Jun 07th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Files](/events/20230607/readme.md) |
+| [NetScaler Automation Toolkit Updates + <br/> Learning Material & Training Labs for Automation Toolkit](https://community.netscaler.com/s/webinar/a078b000010v2BQAAY/netscaler-connect-webinar-25th-may) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, May 25th, 2023 <br/>10:30 AM CEST | [Files](/events/20230525/readme.md) |
+| [NetScaler Automation Toolkit Updates + <br/> Learning Material & Training Labs for Automation Toolkit](https://community.netscaler.com/s/webinar/a078b000010v2BQAAY/netscaler-connect-webinar-25th-may) | NetScaler Connect Webinar <br/> Americas | Thursday, May 25th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST | [Files](/events/20230525/readme.md) |
+| [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, Apr 27th, 2023 <br/>10:30 AM CEST | N/A |
+| [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Americas | Thursday, Apr 27th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST | N/A |
+| [Transforming a Linux Host into a NetScaler BLX with Terraform:<br/> A Hands-On Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uvztAAA/transforming-a-linux-host-into-a-netscaler-blx-with-terraform) | NetScaler Live Demo | Wednesday, Feb 22nd, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Files](/events/20230222/readme.md) |
+| [Automating NetScaler Configurations Using Terraform:<br/> A Hands-on Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uwOMAAY/automating-netscaler-configurations-using-terraform-a-handson-demonstration) | NetScaler Live Demo | Monday, Feb 06th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Files](/events/20230206/readme.md) |
 <br/><br/>
 
 # Training Labs 
@@ -57,13 +57,13 @@ Firt login to [NetScaler Community](https://community.netscaler.com/) using your
 Then access one of following labs to do some hands-on training using Terraform or Ansible with NetScaler.
 <br/><br/>
 
-|            Title            |            Solution            |            Video            | 
-|-----------------------------|----------------------------|----------------------------|
-| [Deliver Apps with NetScaler and Terraform:<br/> Basic Load Balancing Configurations.](https://community.netscaler.com/s/netscaler-labs?labId=000001068) | Terraform | [YouTube](https://youtu.be/tl453GW_sxQ) | 
-| [Basic Content Switching Configuration using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001281) | Terraform |  |
-| [Basic Rewrite / Responder Policies Configuration using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001283) | Terraform |  | 
-| [Basic Application Protection Configuration (WAF) using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001284) | Terraform |  | 
-| [Deliver Apps with NetScaler and Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001069) | Ansible |  | 
+|            Title            |            Solution            |            Video            |            Code            |
+|-----------------------------|----------------------------|----------------------------|----------------------------|
+| [Deliver Apps with NetScaler and Terraform:<br/> Basic Load Balancing Configurations.](https://community.netscaler.com/s/netscaler-labs?labId=000001068) | Terraform | [YouTube](https://youtu.be/tl453GW_sxQ) | [Files](/training_labs/terraform/lab1-basic-lb-config/readme.md) |
+| [Basic Content Switching Configuration using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001281) | Terraform | N/A | [Files](/training_labs/terraform/lab2-basic-cs-config/readme.md) |
+| [Basic Rewrite / Responder Policies Configuration using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001283) | Terraform | N/A | [Files](/training_labs/terraform/lab3-basic-rw-rs-config/readme.md) |
+| [Basic Application Protection Configuration (WAF) using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001284) | Terraform | N/A | [Files](/training_labs/terraform/lab4-basic-appsec-waf/readme.md) |
+| [Deliver Apps with NetScaler and Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001069) | Ansible | N/A | [Files](/training_labs/ansible/lab1-basic-lb-config/readme.md) |
 
 <br/><br/>
 
