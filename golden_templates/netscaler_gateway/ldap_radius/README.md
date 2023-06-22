@@ -16,6 +16,11 @@ Each of these terraform modules contains the below file structure -
 
 Refer [HERE](../../../assets/common_docs/terraform/folder_structure.md).
 
+## Pre-requisites
+
+1. Two NetScaler ADCs to be provisioned already in the same subnet
+2. All the necessary certificates for gateway configuration should be present in `step2_gateway_ldap_radius` folder
+
 ## Usage
 
 ### Step1: Configure HA
@@ -23,9 +28,9 @@ Refer [HERE](../../../assets/common_docs/terraform/folder_structure.md).
 1. `cd step1_configure_ha`
 2. Refer [HERE](../../../assets/common_docs/terraform/terraform_usage.md) for steps
 
-### Step2: Further Configs (Configure 1 LBvserver, 2 servers)
+### Step2: Further Gateway Configuration
 
-1. `cd step2_gateway_saml`
+1. `cd step2_gateway_ldap_radius`
 2. Refer [HERE](../../../assets/common_docs/terraform/terraform_usage.md) for steps
 
 ## Network Architecture
