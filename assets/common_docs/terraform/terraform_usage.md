@@ -6,7 +6,7 @@
 
 ## Step-2 Applying the Configuration
 
-* Modify the `example.tfvars`, `versions.tf` and `main.tf` (if necessary) to suit your gateway configuration.
+* Modify the `example.tfvars`, `versions.tf` and `main.tf` (if necessary) to suit your configuration.
 * Use `terraform plan -var-file example.tfvars` to review the plan
 * Use `terraform apply -var-file example.tfvars` to apply the configuration.
 
