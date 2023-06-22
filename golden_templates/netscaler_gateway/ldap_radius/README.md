@@ -4,8 +4,9 @@ This example shows how to configure a simplified gateway with LDAP and RADIUS au
 
 ## NetScaler Community Live Demo
 
-<https://community.netscaler.com/s/webinar/a078b000010v51jAAA/automating-gateway-configurations-with-golden-terraform-templates-ldap-radius>
+[<img width="300" alt=" Automate Gateway Configurations w/ Golden Terraform templates: LDAP - RADIUS configuration on YouTube" src="https://github.com/netscaler/automation-toolkit/assets/42572246/f8cdf007-66e4-4e7f-bc9f-e533e73ffbdf">](https://www.youtube.com/watch?v=aDUXfdb4u-s)
 
+Video Link: <https://www.youtube.com/watch?v=aDUXfdb4u-s>
 
 ## Folder Structure
 There are two seperate terraform modules
