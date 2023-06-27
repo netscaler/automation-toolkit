@@ -1,0 +1,2 @@
+[netscaler]
+10.10.10.10 nsip=10.10.10.10 nitro_user=nsroot nitro_pass=verysecretpassword validate_certs=no
