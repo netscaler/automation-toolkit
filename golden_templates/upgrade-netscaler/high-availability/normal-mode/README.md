@@ -16,7 +16,7 @@ ansible-galaxy collection install git+https://github.com/citrix/citrix-adc-ansib
 2. Update the yaml file with the build_location and build_file_name, referring to the path and file name of the build image.
 2. Run 
 ```bash
-ansible-playbook issu_upgrade.yaml -i inventory.txt
+ansible-playbook ha_upgrade.yaml -i inventory.txt
 ```
 
 
