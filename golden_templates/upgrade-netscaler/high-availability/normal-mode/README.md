@@ -10,7 +10,10 @@
 ansible-galaxy collection install git+https://github.com/citrix/citrix-adc-ansible-modules.git#/ansible-collections/adc
 ```
 
-## Usage
+## Usage with demo video
+
+<a href="https://youtu.be/mqbfWsaX5Xc"><img src="https://www.freepnglogos.com/uploads/youtube-logo-hd-8.png" alt="Upgrade NetScaler High Availability Pair - Normal Mode - Using Ansible-Playbook" width="300"></a>
+
 
 1. Edit the inventory file with the NSIP of the NetScalers.
 2. Update the yaml file with the build_location and build_file_name, referring to the path and file name of the build image.
@@ -23,4 +26,4 @@ ansible-playbook ha_upgrade.yaml -i inventory.txt
 ## Further Reference
 
 * Upgrade a high availability pair [documentation](https://docs.netscaler.com/en-us/citrix-adc/current-release/upgrade-downgrade-citrix-adc-appliance/upgrade-downgrade-ha-pair.html)
-* Video Reference on how to run this ansible-playbook [here](https://youtu.be/mqbfWsaX5Xc)
+* Video Reference on how to run this ansible-playbook [HERE](https://youtu.be/mqbfWsaX5Xc)
