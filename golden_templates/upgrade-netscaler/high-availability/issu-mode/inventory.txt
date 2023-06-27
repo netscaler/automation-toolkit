@@ -1,0 +1,6 @@
+[primary]
+10.10.10.10 nsip=10.10.10.10 nitro_user=nsroot nitro_pass=verysecretpassword validate_certs=no
+
+[secondary]
+10.10.10.11 nsip=10.10.10.11 nitro_user=nsroot nitro_pass=verysecretpassword validate_certs=no
+
