@@ -1,0 +1,13 @@
+# NetScaler Build Information
+netscaler_build_location: "/var/nsinstall/new_build/"
+netscaler_build_file_name: "build-13.1-34.11_nc_64.tgz"
+netscaler_target_version: "13.1-34.11" # Please input this in the format: "release version-build version" Eg: 13.1-34.11
+
+# Python path on the target NetScaler
+netscaler_python_path: /var/python/bin/python
+
+# Copy the build file from local to Remote NetScaler
+want_to_copy_build: "yes"
+local_build_file_full_path_with_name: "./build-13.1-34.11_nc_64.tgz"
+
+
