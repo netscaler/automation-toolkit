@@ -31,7 +31,7 @@ ansible-galaxy collection install git+https://github.com/citrix/citrix-adc-ansib
 
 
 1. Edit the [inventory.ini](./inventory.ini) file with the NetScaler credentials.
-2. Update the [variable.yaml](./variables.yaml) file with the necessary inputs.
+2. Update the [variables.yaml](./variables.yaml) file with the necessary inputs.
 2. Run the below command
 ```bash
 ansible-playbook ha_upgrade.yaml -i inventory.ini
