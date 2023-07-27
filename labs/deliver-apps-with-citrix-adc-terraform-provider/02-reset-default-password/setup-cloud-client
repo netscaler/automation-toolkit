@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# This script runs when the platform setup the challenge.
+#
+# The platform determines if the script was successful using the exit code of this
+# script. If the exit code is not 0, the script fails. 
+#
+
+echo "This is the setup script"
+
+set -e
+
+mkdir -p /root/reset-default-password
+cd /root/reset-default-password
+zone="europe-west1-b"
+
+adc_instance_nsip=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(networkInterfaces[0].accessConfigs[0].natIP)"`
+
+# Create provider.tf
+cat <<EOF >provider.tf
+
+terraform {
+  required_providers {
+    citrixadc = {
+      source = "citrix/citrixadc"
+      version = "1.9.0"
+    }
+  }
+}
+
+provider "citrixadc" {
+  endpoint = "https://${adc_instance_nsip}"
+  insecure_skip_verify = true
+}
+
+EOF
+
+instance_id=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(id)"`
+
+# Apply the password reset
+cat <<EOF >resources.tf
+
+resource "citrixadc_password_resetter" "tf_resetter" {
+    username = "nsroot"
+    password = "${instance_id}"
+    new_password = "verysecret"
+}
+
+EOF
+
+exit 0

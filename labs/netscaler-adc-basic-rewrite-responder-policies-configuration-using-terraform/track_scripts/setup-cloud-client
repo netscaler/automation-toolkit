@@ -1,0 +1,260 @@
+#!/bin/bash
+
+project_id_var=INSTRUQT_GCP_PROJECT_${INSTRUQT_GCP_PROJECTS}_PROJECT_ID
+project_id=${!project_id_var}
+
+#service_account_var=INSTRUQT_GCP_PROJECT_${INSTRUQT_GCP_PROJECTS}_SERVICE_ACCOUNT_EMAIL
+#service_account=${!service_account_var}
+
+adc_hostname='adc-demo'
+adc_mgmt_ip='192.168.1.10'
+adc_client_ip='192.168.2.10'
+adc_server_ip='192.168.3.10'
+backend_server_1_ip='192.168.3.11'
+backend_server_2_ip='192.168.3.12'
+region="europe-west1"
+zone="europe-west1-b"
+
+# Create Server subnet
+gcloud compute networks create servernetwork \
+        --project=$project_id \
+        --subnet-mode=custom \
+        --bgp-routing-mode=regional && \
+gcloud compute networks subnets create serversubnet \
+        --project=$project_id \
+        --range=192.168.3.0/24 \
+        --network=servernetwork \
+        --region=${region}
+gcloud compute firewall-rules create restrictedports-servernetwork \
+        --network servernetwork \
+        --allow tcp,udp,icmp \
+        --source-ranges 0.0.0.0/0 \
+        --project=$project_id
+
+# Deploy two backend servers
+gcloud compute instances create backend-server-1 \
+        --project=$project_id \
+        --zone=${zone} \
+        --machine-type=n1-standard-2 \
+        --network-interface=network-tier=PREMIUM,private-network-ip=$backend_server_1_ip,subnet=serversubnet \
+        --metadata=startup-script=\#\!/bin/bash$'\n'sudo\ apt\ update\ -y$'\n'sudo\ apt\ install\ -y\ apache2$'\n'sudo\ apt-get\ install\ -y\ libapache2-mod-php7.3\ php7.3$'\n'sudo\ echo\ -e\ \"\<FilesMatch\ \\\".\+\\\\.html\\\$\\\"\>\\n\ \ \ \ SetHandler\ application/x-httpd-php\\n\</FilesMatch\>\"\ \>\>\ /etc/apache2/mods-available/php7.3.conf$'\n'sudo\ service\ apache2\ restart$'\n'sudo\ mkdir\ /var/www/html/echoserver1$'\n'sudo\ cat\ \<\<\'EOF\'\ \>\ /var/www/html/echoserver1/index.html\ $'\n'\<\!DOCTYPE\ html\>$'\n'\<html\>$'\n'\<body\>$'\n'\ \ \<\?php$'\n'\ \ \$header\ =\ apache_request_headers\(\)\;$'\n'\ \ foreach\ \(\$header\ as\ \$headers\ =\>\ \$value\)\ \{$'\n'\ \ \ \ \ \ echo\ \"\$headers:\ \$value\ \<br\ /\>\\n\"\;$'\n'\ \ \}$'\n'\ \ \?\>$'\n'\</body\>$'\n'\</html\>$'\n'EOF$'\n' \
+        --maintenance-policy=MIGRATE \
+        --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
+        --tags=restrictedports-servernetwork \
+        --create-disk=auto-delete=yes,boot=yes,device-name=backend-server-1,image=projects/debian-cloud/global/images/debian-10-buster-v20211105,mode=rw,size=10,type=projects/$project_id/zones/us-central1-a/diskTypes/pd-balanced \
+        --no-shielded-secure-boot \
+        --shielded-vtpm \
+        --shielded-integrity-monitoring \
+        --reservation-affinity=any
+gcloud compute instances create backend-server-2 \
+        --project=$project_id \
+        --zone=${zone} \
+        --machine-type=n1-standard-2 \
+        --network-interface=network-tier=PREMIUM,private-network-ip=$backend_server_2_ip,subnet=serversubnet \
+        --metadata=startup-script=\#\!/bin/bash$'\n'sudo\ apt\ update\ -y$'\n'sudo\ apt\ install\ -y\ apache2$'\n'sudo\ apt-get\ install\ -y\ libapache2-mod-php7.3\ php7.3$'\n'sudo\ echo\ -e\ \"\<FilesMatch\ \\\".\+\\\\.html\\\$\\\"\>\\n\ \ \ \ SetHandler\ application/x-httpd-php\\n\</FilesMatch\>\"\ \>\>\ /etc/apache2/mods-available/php7.3.conf$'\n'sudo\ service\ apache2\ restart$'\n'sudo\ mkdir\ /var/www/html/echoserver2$'\n'sudo\ cat\ \<\<\'EOF\'\ \>\ /var/www/html/echoserver2/index.html\ $'\n'\<\!DOCTYPE\ html\>$'\n'\<html\>$'\n'\<body\>$'\n'\ \ \<\?php$'\n'\ \ \$header\ =\ apache_request_headers\(\)\;$'\n'\ \ foreach\ \(\$header\ as\ \$headers\ =\>\ \$value\)\ \{$'\n'\ \ \ \ \ \ echo\ \"\$headers:\ \$value\ \<br\ /\>\\n\"\;$'\n'\ \ \}$'\n'\ \ \?\>$'\n'\</body\>$'\n'\</html\>$'\n'EOF$'\n' \
+        --maintenance-policy=MIGRATE \
+        --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
+        --tags=restrictedports-servernetwork \
+        --create-disk=auto-delete=yes,boot=yes,device-name=backend-server-1,image=projects/debian-cloud/global/images/debian-10-buster-v20211105,mode=rw,size=10,type=projects/$project_id/zones/us-central1-a/diskTypes/pd-balanced \
+        --no-shielded-secure-boot \
+        --shielded-vtpm \
+        --shielded-integrity-monitoring \
+        --reservation-affinity=any
+
+# Create Management Subnet
+gcloud compute networks create mgmtnetwork \
+        --project=$project_id \
+        --subnet-mode=custom \
+        --bgp-routing-mode=regional && \
+gcloud compute networks subnets create mgmtsubnet \
+        --project=$project_id \
+        --range=192.168.1.0/24 \
+        --network=mgmtnetwork \
+        --region=${region}
+gcloud compute firewall-rules create restrictedports-mgmtnetwork \
+        --network mgmtnetwork \
+        --allow tcp,udp,icmp \
+        --source-ranges 0.0.0.0/0 \
+        --project=$project_id
+
+# Create Client Subnet
+gcloud compute networks create clientnetwork \
+        --project=$project_id \
+        --subnet-mode=custom \
+        --bgp-routing-mode=regional && \
+gcloud compute networks subnets create clientsubnet \
+        --project=$project_id \
+        --range=192.168.2.0/24 \
+        --network=clientnetwork \
+        --region=${region}
+gcloud compute firewall-rules create restrictedports-clientnetwork \
+        --network clientnetwork \
+        --allow tcp,udp,icmp \
+        --source-ranges 0.0.0.0/0 \
+        --project=$project_id
+
+# Deploy Citrix ADC
+gcloud compute instances create $adc_hostname \
+        --project=$project_id --zone=${zone} \
+        --machine-type=n1-standard-4 \
+        --network-interface=network-tier=PREMIUM,private-network-ip=$adc_mgmt_ip,subnet=mgmtsubnet \
+        --network-interface=network-tier=PREMIUM,private-network-ip=$adc_client_ip,subnet=clientsubnet \
+        --network-interface=network-tier=PREMIUM,private-network-ip=$adc_server_ip,subnet=serversubnet,no-address \
+        --maintenance-policy=MIGRATE \
+        --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
+        --tags=restrictedports-mgmtnetwork,restrictedports-clientnetwork,restrictedports-servernetwork \
+        --create-disk=auto-delete=yes,boot=yes,device-name=$adc_hostname,image=projects/citrix-master-project/global/images/citrix-adc-vpx-byol-13-1-33-47,mode=rw,size=20,type=projects/$project_id/zones/us-central1-a/diskTypes/pd-balanced \
+        --reservation-affinity=any
+
+
+
+######################
+# apt packages setup #
+######################
+
+apt update
+apt install -y curl unzip software-properties-common
+
+# Wait for instance to be RUNNING
+
+while (true); do
+status=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(status)"`
+echo "$status" >> /var/tmp/status.log
+if [ $status == "RUNNING" ]; then
+break
+fi
+sleep 1
+done
+
+
+###########################
+# Do .bashrc manipulation #
+###########################
+
+value=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(id)"`
+echo "export ADC_INSTANCE_ID=$value" >> /root/.bashrc
+echo "export ADC_INSTANCE_ID=$value" >> /var/tmp/bashenv
+
+value=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(networkInterfaces[0].accessConfigs[0].natIP)"`
+echo "export ADC_INSTANCE_NSIP=$value" >> /root/.bashrc
+echo "export ADC_INSTANCE_NSIP=$value" >> /var/tmp/bashenv
+
+# Test NITRO endpoint for reachability
+adc_nsip=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(networkInterfaces[0].accessConfigs[0].natIP)"`
+while (true); do
+if curl --no-progress-bar --connect-timeout 5 http://${adc_nsip}/nitro/v1/config/license; then
+echo "NITRO license endpoint responded" >> /var/tmp/status.log
+break
+fi
+echo "Waiting for NITRO license endpoint" >> /var/tmp/status.log
+done
+
+nsip=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(networkInterfaces[0].accessConfigs[0].natIP)"`
+vip=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(networkInterfaces[1].accessConfigs[0].natIP)"`
+backend_server1_publicip=`gcloud compute instances describe --zone ${zone} backend-server-1 --format="value(networkInterfaces[0].accessConfigs[0].natIP)"`
+backend_server2_publicip=`gcloud compute instances describe --zone ${zone} backend-server-2 --format="value(networkInterfaces[0].accessConfigs[0].natIP)"`
+
+# NSIP and VIP html file
+cat>>/var/www/html/adc.html<<EOL
+<table border="1" cellspacing="0" cellpadding="3">
+        <tbody>
+                <tr>
+                        <td>
+                                Citrix ADC Management (login) IP
+                        </td>
+                        <td>
+                                <a href="http://$nsip">$nsip</a>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                Citrix ADC VIP (load balancer) IP
+                        </td>
+                        <td>
+                                <a href="http://$vip">$vip</a>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                First Backend Web Server IP
+                        </td>
+                        <td>
+                                <a href="http://$backend_server1_publicip">$backend_server1_publicip</a>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                Second Backend Web Server IP
+                        </td>
+                        <td>
+                                <a href="http://$backend_server2_publicip">$backend_server2_publicip</a>
+                        </td>
+                </tr>
+        </tbody>
+</table>
+
+EOL
+
+# Write helper script to /usr/local/bin
+cat <<EOF >/usr/local/bin/testresource
+#!/usr/bin/env python3
+
+import json
+import sys
+import argparse
+import os
+
+def get_resource_attributes(args, data):
+    # Find resource
+    for resource in data['resources']:
+        if resource['type'] != args.resource_type:
+            continue
+        if resource['name'] != args.resource_name:
+            continue
+        # Fallthrough to success
+        return resource['instances'][0]['attributes']
+    return 
+
+def match_attributes(args, attributes):
+    for query_attr in args.attribute:
+        key, value = query_attr.split(":", 1)
+        if key not in attributes:
+            return False, 'Attribute %s not found' % key
+        if str(attributes[key]) != value:
+            return False, 'Value differs for attribute `%s`. Wanted `%s` got `%s`' % (key, value, str(attributes[key]))
+    # Fallthrough
+    return True, ''
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('statefile')
+    parser.add_argument('--resource-type', required=True)
+    parser.add_argument('--resource-name', required=True)
+    parser.add_argument('--attribute', required=False, action='append', default=[])
+    
+    args = parser.parse_args()
+
+    if not os.path.exists(args.statefile):
+        print("FAIL: No state file found")
+        sys.exit(1)
+
+    with open(args.statefile, 'r') as fh:
+        data = json.load(fh)
+
+    attributes = get_resource_attributes(args, data)
+
+    if attributes is None:
+        print("FAIL: Could not find resource %s.%s" % (args.resource_type, args.resource_name))
+        sys.exit(1)
+
+    if attributes is not None:
+        match, message = match_attributes(args, attributes)
+        if not match:
+            print("FAIL: %s" % message)
+            sys.exit(1)
+
+if __name__ == '__main__':
+    main()
+EOF
+
+chmod +x /usr/local/bin/testresource
