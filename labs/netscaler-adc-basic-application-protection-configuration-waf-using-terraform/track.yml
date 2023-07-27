@@ -1,0 +1,36 @@
+slug: netscaler-adc-basic-application-protection-configuration-waf-using-terraform
+id: uxqrymyfpftk
+title: NetScaler ADC Basic Application Protection Configuration (WAF) using Terraform
+teaser: Learn how to leverage WAF Policies for protecting your Applications.
+description: |+
+  ## Learn how to leverage WAF Policies for protecting your Applications.
+
+  On this Track we will leverage infrastructure-as-code templates to demonstrate:
+  - How to create WAF policies and profiles.
+  - How to enable WAF policies on load balancing or content switching virtual server level.
+  - How to block or log malicious requests based on different criteria.
+
+  The lab will provision for you a NetScaler ADC and a simple echo server. Then it will guide you on using Terraform to apply your configuration. Echo server is a simple application that echoes back the request it receives. We will leverage the echo server to showcase how our policies are applied based on the information contained in the request / response.
+
+  During this lab we are going to send some malicious requests and see how NetScaler can either block or log these (by acting as a Web Application Firewall) based on the policies that are configured.
+
+icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/default.png
+tags:
+- adc
+- citrix
+- terraform
+- automation
+- web-apps
+- load-balancer
+owner: citrix
+developers:
+- kkaltsas@tibco.com
+- rohit.myali@gmail.com
+- sumanth.lingappa@citrix.com
+- chris.chau@cloud.com
+timelimit: 3600
+lab_config:
+  overlay: false
+  width: 33
+  position: right
+checksum: "14792976669861366980"

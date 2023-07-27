@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# This script runs when the platform check the challenge.
+#
+# The platform determines if the script was successful using the exit code of this
+# script. If the exit code is not 0, the script fails. 
+#
+
+echo "This is the check script"
+
+set -e
+
+cd /root/apply-rewrite-configuration
+
+if terraform show | grep citrixadc_rewritepolicy ; then
+  fail-message "Terraform state does still contains the rewrite policy resource"
+  exit 1
+fi
+
+
+exit 0

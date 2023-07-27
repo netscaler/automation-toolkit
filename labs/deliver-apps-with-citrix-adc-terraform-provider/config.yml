@@ -1,0 +1,12 @@
+version: "3"
+containers:
+- name: cloud-client
+  image: gcr.io/instruqt/cloud-client
+  shell: /bin/bash
+  ports:
+  - 80
+gcp_projects:
+- name: gcpproject
+  services:
+  - compute.googleapis.com
+  roles: []

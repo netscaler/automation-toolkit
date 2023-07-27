@@ -1,0 +1,35 @@
+slug: basic-content-switching-configuration-using-terraform
+id: jqwhcm5h47h0
+title: NetScaler ADC Basic Content Switching Configuration using Terraform
+teaser: Learn how to deploy & configure a Content Switching server for routing traffic
+  to your applications.
+description: |
+  ## Learn how to deploy & configure a Content Switching virtual server for routing traffic to your applications.
+  ##
+
+  On this Track we will leverage infrastructure-as-code templates to demonstrate:
+  - How to deploy a content switching server to route traffic to your applications.
+  - How to route traffic based on URL path or header values.
+
+   The lab will provision for you a NetScaler ADC & 2 web applications and then it will guide you on using Terraform.
+icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/default.png
+tags:
+- adc
+- citrix
+- terraform
+- automation
+- web-apps
+- load-balancer
+- content-switching
+owner: citrix
+developers:
+- kkaltsas@tibco.com
+- rohit.myali@gmail.com
+- sumanth.lingappa@citrix.com
+- chris.chau@cloud.com
+timelimit: 3600
+lab_config:
+  overlay: false
+  width: 33
+  position: right
+checksum: "9999336462046804343"

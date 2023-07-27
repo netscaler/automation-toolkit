@@ -1,0 +1,8 @@
+echo "This is the solve script"
+
+set -e
+cd /root/apply-cs-configuration
+terraform init
+terraform apply -var-file example.tfvars -auto-approve
+
+exit 0

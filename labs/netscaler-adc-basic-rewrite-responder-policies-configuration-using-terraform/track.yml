@@ -1,0 +1,37 @@
+slug: netscaler-adc-basic-rewrite-responder-policies-configuration-using-terraform
+id: zlo9vicbxugi
+title: NetScaler ADC Basic Rewrite / Responder Policies Configuration using Terraform
+teaser: Learn how to leverage basic Rewrite / Responder Policies for manipulating
+  Requests and Responses.
+description: |-
+  ## Learn how to leverage basic Rewrite / Responder Policies for manipulating Requests and Responses.
+
+  On this Track we will leverage infrastructure-as-code templates to demonstrate:
+
+  -  How to create rewrite / responder policies.
+  -  What is the difference between the two?
+  -  How to bind a policy on a content switching server.
+  -  How to manipulate an incoming request based on different criteria.
+  -  How to redirect a request based on different criteria.
+
+  The lab will provision for you a NetScaler ADC and a simple echo server. Then it will guide you on using Terraform to apply your configuration. Echo server is a simple application that echoes back the request it receives. We will leverage the echo server to showcase how our policies are applied based on the information contained in the request and how we can manipulate request / response.
+icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/default.png
+tags:
+- adc
+- citrix
+- terraform
+- automation
+- web-apps
+- load-balancer
+owner: citrix
+developers:
+- kkaltsas@tibco.com
+- rohit.myali@gmail.com
+- sumanth.lingappa@citrix.com
+- chris.chau@cloud.com
+timelimit: 3600
+lab_config:
+  overlay: false
+  width: 33
+  position: right
+checksum: "9147089041490858283"

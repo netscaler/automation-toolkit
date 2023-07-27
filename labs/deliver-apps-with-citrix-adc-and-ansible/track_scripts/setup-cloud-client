@@ -1,0 +1,189 @@
+#!/bin/bash
+
+project_id_var=INSTRUQT_GCP_PROJECT_${INSTRUQT_GCP_PROJECTS}_PROJECT_ID
+project_id=${!project_id_var}
+
+#service_account_var=INSTRUQT_GCP_PROJECT_${INSTRUQT_GCP_PROJECTS}_SERVICE_ACCOUNT_EMAIL
+#service_account=${!service_account_var}
+
+adc_hostname='adc-demo'
+adc_mgmt_ip='192.168.1.10'
+adc_client_ip='192.168.2.10'
+adc_server_ip='192.168.3.10'
+backend_server_1_ip='192.168.3.11'
+backend_server_2_ip='192.168.3.12'
+region="europe-west1"
+zone="europe-west1-b"
+
+# Create Server subnet
+gcloud compute networks create servernetwork \
+        --project=$project_id \
+        --subnet-mode=custom \
+        --bgp-routing-mode=regional && \
+gcloud compute networks subnets create serversubnet \
+        --project=$project_id \
+        --range=192.168.3.0/24 \
+        --network=servernetwork \
+        --region=${region}
+gcloud compute firewall-rules create restrictedports-servernetwork \
+        --network servernetwork \
+        --allow tcp,udp,icmp \
+        --source-ranges 0.0.0.0/0 \
+        --project=$project_id
+
+# Deploy two backend servers
+gcloud compute instances create backend-server-1 \
+        --project=$project_id \
+        --zone=${zone} \
+        --machine-type=n1-standard-2 \
+        --network-interface=network-tier=PREMIUM,private-network-ip=$backend_server_1_ip,subnet=serversubnet \
+        --metadata=startup-script=\ \#\!\ /bin/bash$'\n'\ sudo\ apt\ update\ -y$'\n'\ sudo\ apt\ install\ -y\ nginx$'\n'sudo\ systemctl\ enable\ nginx$'\n'sudo\ systemctl\ restart\ nginx$'\n'\ cat\ \<\<EOF\ \>\ /var/www/html/index.html$'\n'\ \<h1\>\<strong\>Traffic\ serving\ via\ \<span\ style=\"background-color:\ \#ff0000\;\"\>BACKEND-SERVER-1\</span\>\</strong\>\</h1\> \
+        --maintenance-policy=MIGRATE \
+        --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
+        --tags=restrictedports-servernetwork \
+        --create-disk=auto-delete=yes,boot=yes,device-name=backend-server-1,image=projects/debian-cloud/global/images/debian-10-buster-v20211105,mode=rw,size=10,type=projects/$project_id/zones/us-central1-a/diskTypes/pd-balanced \
+        --no-shielded-secure-boot \
+        --shielded-vtpm \
+        --shielded-integrity-monitoring \
+        --reservation-affinity=any
+gcloud compute instances create backend-server-2 \
+        --project=$project_id \
+        --zone=${zone} \
+        --machine-type=n1-standard-2 \
+        --network-interface=network-tier=PREMIUM,private-network-ip=$backend_server_2_ip,subnet=serversubnet \
+        --metadata=startup-script=\ \#\!\ /bin/bash$'\n'\ sudo\ apt\ update\ -y$'\n'\ sudo\ apt\ install\ -y\ nginx$'\n'sudo\ systemctl\ enable\ nginx$'\n'sudo\ systemctl\ restart\ nginx$'\n'\ cat\ \<\<EOF\ \>\ /var/www/html/index.html$'\n'\ \<h1\>\<strong\>Traffic\ serving\ via\ \<span\ style=\"background-color:\ \#00ff00\;\"\>BACKEND-SERVER-2\</span\>\</strong\>\</h1\> \
+        --maintenance-policy=MIGRATE \
+        --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
+        --tags=restrictedports-servernetwork \
+        --create-disk=auto-delete=yes,boot=yes,device-name=backend-server-2,image=projects/debian-cloud/global/images/debian-10-buster-v20211105,mode=rw,size=10,type=projects/$project_id/zones/us-central1-a/diskTypes/pd-balanced \
+        --no-shielded-secure-boot \
+        --shielded-vtpm \
+        --shielded-integrity-monitoring \
+        --reservation-affinity=any
+
+# Create Management Subnet
+gcloud compute networks create mgmtnetwork \
+        --project=$project_id \
+        --subnet-mode=custom \
+        --bgp-routing-mode=regional && \
+gcloud compute networks subnets create mgmtsubnet \
+        --project=$project_id \
+        --range=192.168.1.0/24 \
+        --network=mgmtnetwork \
+        --region=${region}
+gcloud compute firewall-rules create restrictedports-mgmtnetwork \
+        --network mgmtnetwork \
+        --allow tcp,udp,icmp \
+        --source-ranges 0.0.0.0/0 \
+        --project=$project_id
+
+# Create Client Subnet
+gcloud compute networks create clientnetwork \
+        --project=$project_id \
+        --subnet-mode=custom \
+        --bgp-routing-mode=regional && \
+gcloud compute networks subnets create clientsubnet \
+        --project=$project_id \
+        --range=192.168.2.0/24 \
+        --network=clientnetwork \
+        --region=${region}
+gcloud compute firewall-rules create restrictedports-clientnetwork \
+        --network clientnetwork \
+        --allow tcp,udp,icmp \
+        --source-ranges 0.0.0.0/0 \
+        --project=$project_id
+
+# Deploy Citrix ADC
+gcloud compute instances create $adc_hostname \
+        --project=$project_id \
+        --zone=${zone} \
+        --machine-type=n1-standard-4 \
+        --network-interface=network-tier=PREMIUM,private-network-ip=$adc_mgmt_ip,subnet=mgmtsubnet \
+        --network-interface=network-tier=PREMIUM,private-network-ip=$adc_client_ip,subnet=clientsubnet \
+        --network-interface=network-tier=PREMIUM,private-network-ip=$adc_server_ip,subnet=serversubnet,no-address \
+        --maintenance-policy=MIGRATE \
+        --scopes=https://www.googleapis.com/auth/devstorage.read_only,https://www.googleapis.com/auth/logging.write,https://www.googleapis.com/auth/monitoring.write,https://www.googleapis.com/auth/servicecontrol,https://www.googleapis.com/auth/service.management.readonly,https://www.googleapis.com/auth/trace.append \
+        --tags=restrictedports-mgmtnetwork,restrictedports-clientnetwork,restrictedports-servernetwork \
+        --create-disk=auto-delete=yes,boot=yes,device-name=$adc_hostname,image=projects/citrix-master-project/global/images/citrix-adc-vpx-byol-13-1-33-47,mode=rw,size=20,type=projects/$project_id/zones/us-central1-a/diskTypes/pd-balanced \
+        --reservation-affinity=any
+
+
+# Wait for instance to be RUNNING
+while (true); do
+    status=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(status)"`
+    echo "$status" >> /var/tmp/status.log
+    if [ $status == "RUNNING" ]; then
+        break
+    fi
+    sleep 1
+done
+
+
+###########################
+# Do .bashrc manipulation #
+###########################
+
+# Get Citrix ADC InstanceID and save it to .bashrc and /var/tmp/bashenv
+instancd_id=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(id)"`
+echo "ADC_INSTANCE_ID=$instance_id" >> /root/.bashrc
+echo "export ADC_INSTANCE_ID=$instance_id" >> /var/tmp/bashenv
+
+# Get Citrix ADC NSIP and save it to .bashrc and /var/tmp/bashenv
+nsip=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(networkInterfaces[0].accessConfigs[0].natIP)"`
+echo "ADC_INSTANCE_NSIP=$nsip" >> /root/.bashrc
+echo "export ADC_INSTANCE_NSIP=$nsip" >> /var/tmp/bashenv
+
+# Get Citrix ADC VIP and save it to .bashrc and /var/tmp/bashenv
+vip=`gcloud compute instances describe --zone ${zone} adc-demo --format="value(networkInterfaces[1].accessConfigs[0].natIP)"`
+echo "ADC_INSTANCE_VIP=$vip" >> /root/.bashrc
+echo "export ADC_INSTANCE_VIP=$vip" >> /var/tmp/bashenv
+
+# Test NITRO endpoint for reachability
+while (true); do
+    if curl --no-progress-bar --connect-timeout 5 http://${nsip}/nitro/v1/config/license; then
+        break
+    fi
+done
+
+# Get management Public IP of backend-servers.
+backend_server1_publicip=`gcloud compute instances describe --zone ${zone} backend-server-1 --format="value(networkInterfaces[0].accessConfigs[0].natIP)"`
+backend_server2_publicip=`gcloud compute instances describe --zone ${zone} backend-server-2 --format="value(networkInterfaces[0].accessConfigs[0].natIP)"`
+cat>>/var/www/html/adc.html<<EOL
+<table border="3">
+        <tbody>
+                <tr>
+                        <td>
+                                Citrix ADC NSIP (Management login) IP
+                        </td>
+                        <td>
+                                <a href="http://$nsip">$nsip</a>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                Citrix ADC VIP (load balancer) Client IP
+                        </td>
+                        <td>
+                                <a href="http://$vip">$vip</a>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                First Backend Web Server IP
+                        </td>
+                        <td>
+                                <a href="http://$backend_server1_publicip">$backend_server1_publicip</a>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                Second Backend Web Server IP
+                        </td>
+                        <td>
+                                <a href="http://$backend_server2_publicip">$backend_server2_publicip</a>
+                        </td>
+                </tr>
+        </tbody>
+</table>
+
+EOL
