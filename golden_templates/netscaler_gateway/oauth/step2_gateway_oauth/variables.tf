@@ -410,10 +410,6 @@ variable "gateway_authenticationldapaction_ldapbinddnpassword" {
   type        = string
   description = "Gateway Authenticationldapaction ldapbinddnpassword"
 }
-# variable "gateway_authenticationldapaction_searchfilter" {
-#   type        = string
-#   description = "Gateway Authenticationldapaction searchfilter"
-# }
 
 variable "authenticationradiusaction_name" {
   type        = string
@@ -431,23 +427,23 @@ variable "authenticationradiusaction_radkey" {
 
 
 variable "authenticationoauthidpprofile_clientid" {
-  type = string
+  type        = string
   description = "authenticationoauthidpprofile clientid"
 }
 variable "authenticationoauthidpprofile_clientsecret" {
-  type = string
+  type        = string
   description = "authenticationoauthidpprofile clientsecret"
 }
 variable "authenticationoauthidpprofile_redirecturl" {
-  type = string
+  type        = string
   description = "authenticationoauthidpprofile redirecturl"
 }
 variable "authenticationoauthidpprofile_issuer" {
-  type = string
+  type        = string
   description = "authenticationoauthidpprofile issuer"
 }
 variable "authenticationoauthidpprofile_audience" {
-  type = string
+  type        = string
   description = "authenticationoauthidpprofile audience"
 }
 

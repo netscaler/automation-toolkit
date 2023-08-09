@@ -94,8 +94,8 @@ resource "citrixadc_nsip" "nsip_qenzcpieio" {
 # Above configuration is implemeted in below terraform resource block
 # Need to check on link ssl certKey Intermediate_SSL_certificate Intermediate_SSL_certificate_ic1  
 resource "citrixadc_sslcertkey" "sslcertkey_yactrltynp" { #Issuer certificate mismatch
-  certkey = "Intermediate_SSL_certificate"
-  cert    = "remote_mycoolcompany_com.ca-bundle"
+  certkey         = "Intermediate_SSL_certificate"
+  cert            = "remote_mycoolcompany_com.ca-bundle"
   linkcertkeyname = citrixadc_sslcertkey.sslcertkey_todfwaybti.certkey
   depends_on = [
     citrixadc_systemfile.remote_mycoolcompany_com_ca-bundle
@@ -110,9 +110,9 @@ resource "citrixadc_sslcertkey" "sslcertkey_todfwaybti" {
 }
 # link ssl certKey remote.mycoolcompany.com Intermediate_SSL_certificate 
 resource "citrixadc_sslcertkey" "tf_sslcertkey" {
-  certkey = "remote.mycoolcompany.com"
-  cert    = "remote_mycoolcompany_com.crt"
-  key     = "remote.mycoolcompany.com_key3.txt"
+  certkey         = "remote.mycoolcompany.com"
+  cert            = "remote_mycoolcompany_com.crt"
+  key             = "remote.mycoolcompany.com_key3.txt"
   linkcertkeyname = citrixadc_sslcertkey.sslcertkey_yactrltynp.certkey
   depends_on = [
     citrixadc_systemfile.remote_mycoolcompany_com_crt,
