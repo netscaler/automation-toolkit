@@ -30,7 +30,7 @@ In this challenge we will see how we can create Content Switching Policies to ro
 - If the HTTP request contains a Header `Color: red` we are expecting all traffic to go to the application with the red background
 - If the HTTP request contains a Header `Color: green` we are expecting all traffic to go to the application with the green background
 
-Learn more about ADC Content Switching [here](https://docs.citrix.com/en-us/citrix-adc/current-release/content-switching.html).
+Learn more about ADC Content Switching [here](https://docs.netscaler.com/en-us/citrix-adc/current-release/content-switching.html).
 
 
 Terraform configuration
@@ -81,7 +81,7 @@ Verifying the configuration
 Lets Verify the Configuration in the  Bastion Host CLI  through CURL command.
 Go to Bastion Host CLI  and type the following Curl command.
 
-Note: Update the VIP with the IP address present in the `Citrix ADC data` tab while executing the below command
+**_NOTE:_** Update the VIP with the IP address present in the `NetScaler ADC data` tab while executing the below command
 
 1. To check the red web server with the header `Color: red`
 
@@ -98,11 +98,10 @@ curl -X GET http://{VIP} -H 'Content-Type: application/json' -H 'Color: green'
 ![curl-green-server](https://github.com/citrix/terraform-cloud-scripts/blob/master/assets/instruqt_lab/netscaler-adc-basic-content-switching-using-terraform/curl-green-server.png?raw=true)
 
 
-
 ## Inspect Configuration through ADC Web GUI
 You can also inspect the same information through the
-Citrix ADC Web GUI.
-Open a browser window with the NSIP. After login head to Traffic Management -> Content Switching -> policies.
+NetScaler ADC Web GUI.
+Open a browser window with the NSIP. After login head to `Traffic Management` >> `Content Switching` >> `policies`.
 You should be able to see the two content-switching policies.
 you can view further details.
 

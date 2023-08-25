@@ -17,13 +17,14 @@ description: |-
   The lab will provision for you a NetScaler ADC and a simple echo server. Then it will guide you on using Terraform to apply your configuration. Echo server is a simple application that echoes back the request it receives. We will leverage the echo server to showcase how our policies are applied based on the information contained in the request and how we can manipulate request / response.
 icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/default.png
 tags:
-- adc
-- citrix
-- terraform
-- automation
 - web-apps
+- automation
+- citrix
+- adc
+- netscaler
+- terraform
 - load-balancer
-owner: citrix
+owner: netscaler
 developers:
 - kkaltsas@tibco.com
 - rohit.myali@gmail.com
@@ -34,4 +35,4 @@ lab_config:
   overlay: false
   width: 33
   position: right
-checksum: "9147089041490858283"
+checksum: "13021517827523298247"

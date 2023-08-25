@@ -34,7 +34,7 @@ In this challenge we will see how we can create WAF Policies to log an malicious
 
 
 
-Learn more about ADC WAF [here](https://docs.citrix.com/en-us/citrix-adc/current-release/application-firewall/introduction-to-citrix-web-app-firewall.html).
+Learn more about ADC WAF [here](https://docs.netscaler.com/en-us/citrix-adc/current-release/application-firewall/introduction-to-citrix-web-app-firewall.html).
 
 
 Terraform configuration
@@ -291,7 +291,7 @@ the correct directory.
 cd /root/apply-waf-configuration
 ```
 Then we need to initilize the configuration in order to
-download the Citrix ADC provider.
+download the NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest).
 ```bash
 terraform init
 ```
@@ -310,7 +310,7 @@ Verifying the configuration
 Lets Verify the Configuration in the Bastion Host CLI  through CURL command.
 Go to Bastion Host CLI  and type the following Curl command.
 
-Note: Replace  the VIP in cURL command with the VIP address present in the `Citrix ADC data` tab while executing the below command
+Note: Replace  the VIP in cURL command with the VIP address present in the `NetScaler ADC data` tab while executing the below command
 
 
 1. To check the WAF configuration for the `echoserver1`, we will verify with the curl command for SQL exploitation, in this case it should block the request, and log the information.

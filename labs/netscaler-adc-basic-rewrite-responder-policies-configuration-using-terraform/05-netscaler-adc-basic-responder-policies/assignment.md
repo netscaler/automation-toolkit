@@ -40,7 +40,7 @@ First, the responder policy expression will be evaluated against the request and
 
 Follow below instruction to configure responder policy on NetScaler.
 
-Learn more about ADC Content Switching [here](https://docs.citrix.com/en-us/citrix-adc/current-release/appexpert/responder.html).
+Learn more about ADC responder policy [here](https://docs.netscaler.com/en-us/citrix-adc/current-release/appexpert/responder.html).
 
 Terraform Configuration
 ============
@@ -48,7 +48,7 @@ Terraform Configuration
 Go to the `code Editor` tab and update the following changes.
 Open `main.tf` file.
 
-Add the resource block to create new rewrite policy and rewrite action and to bind the rewrite the policy to the content-switching vserver `tf_csvserver` as shown below. So, add the below code (resource block) to the `main.tf` file.
+Add the resource block to create new rewrite policy and rewrite action and to bind the rewrite the policy to the content-switching vserver `tf_csvserver` as shown below. So, append the below code (resource block) to the `main.tf` file.
 
 ```hcl
 resource "citrixadc_responderaction" "tf_responderaction" {
@@ -72,7 +72,7 @@ resource "citrixadc_csvserver_responderpolicy_binding" "tf_bind" {
 Then open the `variables.tf` file.
 We need to create a variable block for the some of the above referring variable attributes.
 
-So, add the below code in the `variables.tf` file.
+So, append the below code in the `variables.tf` file.
 
 ```hcl
 variable "responderaction_type" {
@@ -121,7 +121,7 @@ the correct directory.
 cd /root/apply-rewrite-configuration
 ```
 Then we need to initilize the configuration in order to
-download the Citrix ADC provider.
+download the NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest).
 ```bash
 terraform init
 ```
@@ -146,12 +146,13 @@ Open the browser
 - If we visit just VIP we are expecting all traffic to be redirected to echoserver2 with no additional HTTP Header added to the request.
 ![echoserver2](https://github.com/citrix/terraform-cloud-scripts/blob/master/assets/instruqt_lab/netscaler-adc-basic-rewrite-responder-policies-using-terraform/browser-echoserver2.png?raw=true)
 
+**_NOTE:_** Please update the `VIP` whike verifying the above, from the value present on NetScaler ADC data tab.
 
 ## Inspect Configuration through ADC Web GUI
 
 You can also inspect the same information through the
-Citrix ADC Web GUI.
-Open a browser window with the NSIP. After login head to AppExpert -> Responder -> Policies.
+NetScaler ADC Web GUI.
+Open a browser window with the NSIP, with username as `nsroot` and password as `verysecret`. After login head to AppExpert -> Responder -> Policies.
 You should be able to see the `tf_responder_policy` and by clicking on it
 you can view further details.
 

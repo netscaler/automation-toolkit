@@ -32,7 +32,7 @@ In this lab, we have provisioned the following:
 You can visit `NetScaler ADC data ` tab to find more details about the IPs that have been assigned to these.
 
 As part of the lab, we will achieve the following :
-1.	Install Terraform CLI binary and Citrix ADC provider in a bastion host with access to the target ADC instance.
+1.	Install Terraform CLI binary and NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest) provider in a bastion host with access to the target ADC instance.
 2.	We will configure ADC to route traffic to our echo server. To learn more on how routing works please check `NetScaler ADC Basic Content Switching Configuration using Terraform ` Lab.
 3.	We will show how we can create WAF policies and profiles to protect different types of applications to either block or log a malicious request.
 4.	We will show how we can apply our protection both on load balancing or content switching level.

@@ -51,7 +51,7 @@ Two content switching policies are created `tf_policy_echoserver1` and `tf_polic
 Finally, we are creating a content switching virtual server `tf_csvserver`, that has the VIP attached to it. The two content switching policies are then bound to this content switching virtual server.
 
 
-Learn more about ADC Content Switching [here](https://docs.citrix.com/en-us/citrix-adc/current-release/content-switching.html).
+Learn more about NetScaler ADC Content Switching [here](https://docs.netscaler.com/en-us/citrix-adc/current-release/content-switching.html).
 
 Terraform configuration
 =======================
@@ -60,7 +60,7 @@ The configuration has already been written to the directory
 `/root/apply-rewrite-configuration`. You can browse the files in the Code Editor tab.
 
 ## Files Structure
-* `main.tf` describes the actual Citrix ADC config objects to be created. The attributes of these resources are either hard coded or looked up from input variables in `example.tfvars`
+* `main.tf` describes the actual NetScaler ADC config objects to be created. The attributes of these resources are either hard coded or looked up from input variables in `example.tfvars`
 * `variables.tf` describes the input variables to the terraform config. These can have defaults
 * `versions.tf` is used to specify the username, password and endpoint of the Netscaler ADC.
 * `example.tfvars` has the variable inputs specified in `variables.tf`
@@ -78,7 +78,7 @@ the correct directory.
 cd /root/apply-rewrite-configuration
 ```
 Then we need to initilize the configuration in order to
-download the Citrix ADC provider.
+download the NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest).
 ```bash
 terraform init
 ```
@@ -108,8 +108,8 @@ Open the browser
 ## Inspect Configuration through ADC Web GUI
 
 You can also inspect the same information through the
-Citrix ADC Web GUI.
-Open a browser window with the NSIP. After login head to Traffic Management -> Content Switching -> Virtual servers.
+NetScaler ADC Web GUI.
+Open a browser window with the NSIP, username as `nsroot` and password as `verysecret` . After login head to `Traffic Management` -> `Content Switching` -> `Virtual servers`.
 You should be able to see the `tf_csvserver` and by clicking on it
 you can view further details.
 

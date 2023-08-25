@@ -31,7 +31,7 @@ In this challenge we will see how we can create WAF Policies to protect our appl
 - If we send the same malicious request to `{VIP}/echoserver2`  it should pass through ADC.
 
 
-Learn more about ADC WAF [here](https://docs.citrix.com/en-us/citrix-adc/current-release/application-firewall/introduction-to-citrix-web-app-firewall.html).
+Learn more about NetScaler ADC WAF [here](https://docs.netscaler.com/en-us/citrix-adc/current-release/application-firewall/introduction-to-citrix-web-app-firewall.html).
 
 Terraform configuration
 =======================
@@ -294,7 +294,7 @@ the correct directory.
 cd /root/apply-waf-configuration
 ```
 Then we need to initilize the configuration in order to
-download the Citrix ADC provider.
+download the NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest).
 ```bash
 terraform init
 ```
@@ -335,7 +335,7 @@ curl -vi {VIP}/echoserver2/user.aspx?id=1%3B%20DROP%20TABLE%20users
 ## Inspect Configuration through ADC Web GUI
 
 You can also inspect the same information through the
-Citrix ADC Web GUI.
+NetScaler ADC Web GUI.
 Open a browser window with the NSIP. After login head to **Security** -> **Citrix Web App Firewall**.
 You should be able to see the Two profiles and two policies.
 you can view further details.

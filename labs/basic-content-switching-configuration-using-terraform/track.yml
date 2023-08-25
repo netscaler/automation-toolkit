@@ -14,14 +14,14 @@ description: |
    The lab will provision for you a NetScaler ADC & 2 web applications and then it will guide you on using Terraform.
 icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/default.png
 tags:
-- adc
-- citrix
-- terraform
-- automation
 - web-apps
+- automation
+- citrix
+- adc
+- terraform
 - load-balancer
 - content-switching
-owner: citrix
+owner: netscaler
 developers:
 - kkaltsas@tibco.com
 - rohit.myali@gmail.com
@@ -32,4 +32,4 @@ lab_config:
   overlay: false
   width: 33
   position: right
-checksum: "9999336462046804343"
+checksum: "15492214606032258156"

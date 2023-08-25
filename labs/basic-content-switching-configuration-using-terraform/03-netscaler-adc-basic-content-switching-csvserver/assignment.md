@@ -51,7 +51,7 @@ Two content-switching policies are created `tf_policy_red` and `tf_policy_green`
 Finally, we are creating a content switching virtual server `tf_csvserver`, that has the VIP attached to it. The two content switching policies are then bound to this content switching virtual server.
 
 
-Learn more about ADC Content Switching [here](https://docs.citrix.com/en-us/citrix-adc/current-release/content-switching.html).
+Learn more about ADC Content Switching [here](https://docs.netscaler.com/en-us/citrix-adc/current-release/content-switching.html).
 
 Terraform configuration
 =======================
@@ -78,7 +78,7 @@ the correct directory.
 cd /root/apply-cs-configuration
 ```
 Then we need to initilize the configuration in order to
-download the Citrix ADC provider.
+download the NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest).
 ```bash
 terraform init
 ```
@@ -86,7 +86,7 @@ Lastly we need to apply the configuration.
 ```bash
 terraform apply -var-file example.tfvars
 ```
-Answer `yes` and hit `enter` to proceed.If all is well you will see a message for the successful
+Answer `yes` and hit `enter` to proceed. If all is well you will see a message for the successful
 creation of the resources.
 
 Verifying the configuration
@@ -96,6 +96,7 @@ Verifying the configuration
 
 
 Having applied the configuration you should be able to reach the back-end services through the VIP address, so follow the below steps.
+Note: Update the VIP with the IP address present in the `NetScaler ADC data` tab while performing the below steps.
 
 Open the browser
 - If we visit VIP/red we are expecting all traffic to go to the application with the red background
@@ -105,12 +106,11 @@ Open the browser
 ![green-server](https://github.com/citrix/terraform-cloud-scripts/blob/master/assets/instruqt_lab/netscaler-adc-basic-content-switching-using-terraform/browser-green-server.png?raw=true)
 
 
-
 ## Inspect Configuration through ADC Web GUI
 
 You can also inspect the same information through the
 NetScaler ADC Web GUI.
-Open a browser window with the NSIP. After login head to Traffic Management -> Content Switching -> Virtual servers.
+Open a browser window with the NSIP, with the username as `nsroot` and password as `verysecret`. After login head to `Traffic Management` >> `Content Switching` >> `Virtual servers`.
 You should be able to see the `tf_csvserver` and by clicking on it
 you can view further details.
 

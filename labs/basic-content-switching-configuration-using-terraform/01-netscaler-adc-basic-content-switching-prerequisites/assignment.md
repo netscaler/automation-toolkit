@@ -11,13 +11,13 @@ tabs:
 - title: Bastion Host CLI
   type: terminal
   hostname: cloud-client
-- title: Citrix ADC data
+- title: NetScaler ADC data
   type: service
   hostname: cloud-client
   path: /adc.html
   port: 80
 difficulty: basic
-timelimit: 3600
+timelimit: 900
 ---
 
 Introduction
@@ -33,7 +33,7 @@ You can visit `NetScaler ADC data ` tab to find more details about the IPs that 
 
 
 As part of the lab, we will achieve the following :
-1.	Install Terraform CLI binary and Citrix ADC provider in a bastion host with access to the target ADC instance.
+1.	Install Terraform CLI binary and NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest) in a bastion host with access to the target ADC instance.
 2.	Deploy a Content Switching virtual server to route traffic to your applications.
 3.	Configure Content Switching Policies and route traffic based on URL path or header values.
 

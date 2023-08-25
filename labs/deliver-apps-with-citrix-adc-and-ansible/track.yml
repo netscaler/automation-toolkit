@@ -10,15 +10,15 @@ description: |
 icon: https://www.citrix.com/content/dam/citrix61/en_us/images/logos/citrix/citrix-logo-black.png
 level: beginner
 tags:
-- adc
-- citrix
+- web-apps
 - ansible
 - automation
-- ansible-playbook
+- citrix
+- adc
 - gcp
-- web-apps
 - load-balancer
-owner: citrix
+- ansible-playbook
+owner: netscaler
 developers:
 - sumanth.lingappa@citrix.com
 - giorgos.nikolopoulos@citrix.com
@@ -32,4 +32,4 @@ lab_config:
   overlay: false
   width: 33
   position: right
-checksum: "8261403261045593999"
+checksum: "7242508055715617948"

@@ -55,9 +55,9 @@ Conclusion
 ==========
 This concludes our track.
 
-In this track we focused on some example configurations that can cover specific use cases. You can find more example configurations of how to configure ADC using Terraform on the NetScaler ADC provider's [Github repository](https://github.com/citrix/terraform-provider-citrixadc/tree/master/examples).
+In this track we focused on some example configurations that can cover specific use cases. You can find more example configurations and documentaion on [terraform registry](https://registry.terraform.io/providers/citrix/citrixadc/latest/docs).
 
 You can experiment with them and combine them to achieve more complex configurations for advanced use cases such as Application Protection, High Availability and Global Server Load Balancing and more.
 
 General documentation for the NetScaler ADC can be found
-at the [NetScaler ADC documentation site](https://docs.citrix.com/en-us/citrix-adc/current-release.html).
+at the [NetScaler ADC documentation site](https://docs.netscaler.com/en-us/citrix-adc/current-release.html).

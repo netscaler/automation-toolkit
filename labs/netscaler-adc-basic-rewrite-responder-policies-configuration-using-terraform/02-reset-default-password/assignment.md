@@ -15,7 +15,7 @@ tabs:
 - title: Bastion Host CLI
   type: terminal
   hostname: cloud-client
-- title: Citrix ADC data
+- title: NetScaler ADC data
   type: service
   hostname: cloud-client
   path: /adc.html
@@ -69,7 +69,7 @@ Go to Bastion Host CLI and perform following operations :
 	```bash
 	terraform init
 	```
-	This command will download and install the citrixadc provider
+	This command will download and install the NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest)
 	which is needed to run the configuration.
 
 3. Apply the configuration.
@@ -91,4 +91,4 @@ We have now configured the target ADC with a new password.
 
 If you changed the new password to something else than the one
 supplied please take note of it since you will be needing it
-for the subsequent challenges citrixadc provider configuration.
+for the subsequent challenges NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest) configuration.

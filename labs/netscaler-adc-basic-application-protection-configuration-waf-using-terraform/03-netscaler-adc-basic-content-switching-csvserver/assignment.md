@@ -50,7 +50,7 @@ Two content switching policies are created `tf_policy_echoserver1` and `tf_polic
 Finally, we are creating a content switching virtual server `tf_csvserver`, that has the VIP attached to it. The two content switching policies are then bound to this content switching virtual server.
 
 
-Learn more about ADC Content Switching [here](https://docs.citrix.com/en-us/citrix-adc/current-release/content-switching.html).
+Learn more about ADC Content Switching [here](https://docs.netscaler.com/en-us/citrix-adc/current-release/content-switching.html).
 
 Terraform configuration
 =======================
@@ -77,7 +77,7 @@ the correct directory.
 cd /root/apply-waf-configuration
 ```
 Then we need to initilize the configuration in order to
-download the Citrix ADC provider.
+download the NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest).
 ```bash
 terraform init
 ```
@@ -118,7 +118,7 @@ curl  {VIP}/echoserver2/user.aspx?id=1%3B%20DROP%20TABLE%20users
 ## Inspect Configuration through ADC Web GUI
 
 You can also inspect the same information through the
-Citrix ADC Web GUI.
+NetScaler ADC Web GUI.
 Open a browser window with the NSIP. After login head to Traffic Management -> Content Switching -> Virtual servers.
 You should be able to see the `tf_csvserver` and by clicking on it
 you can view further details.

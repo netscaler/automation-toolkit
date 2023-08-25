@@ -31,7 +31,7 @@ In this challenge we will see how we can create Rewrite Policies to manipulate a
 - If we visit `{VIP}/echoserver2`  HTTP Header should not be there.
 
 
-Learn more about ADC Content Switching [here](https://docs.citrix.com/en-us/citrix-adc/current-release/appexpert/rewrite.html).
+Learn more about NetScaler ADC Rewrite policy [here](https://docs.netscaler.com/en-us/citrix-adc/current-release/appexpert/rewrite.html).
 
 Terraform Configuration
 ============
@@ -122,7 +122,7 @@ the correct directory.
 cd /root/apply-rewrite-configuration
 ```
 Then we need to initilize the configuration in order to
-download the Citrix ADC provider.
+download the NetScaler ADC provider[(terraform-provider-citrixadc)](https://registry.terraform.io/providers/citrix/citrixadc/latest).
 ```bash
 terraform init
 ```
@@ -151,8 +151,8 @@ Open the browser
 ## Inspect Configuration through ADC Web GUI
 
 You can also inspect the same information through the
-Citrix ADC Web GUI.
-Open a browser window with the NSIP. After login head to AppExpert -> Rewrite -> Policies.
+NetScaler ADC Web GUI.
+Open a browser window with the NSIP, with username as `nsroot` and password as `verysecret`. After login head to AppExpert -> Rewrite -> Policies.
 You should be able to see the `tf_rewrite_policy` and by clicking on it
 you can view further details.
 

@@ -16,13 +16,13 @@ description: |+
 
 icon: https://storage.googleapis.com/instruqt-frontend/img/tracks/default.png
 tags:
-- adc
-- citrix
-- terraform
-- automation
 - web-apps
+- automation
+- citrix
+- adc
+- terraform
 - load-balancer
-owner: citrix
+owner: netscaler
 developers:
 - kkaltsas@tibco.com
 - rohit.myali@gmail.com
@@ -33,4 +33,4 @@ lab_config:
   overlay: false
   width: 33
   position: right
-checksum: "14792976669861366980"
+checksum: "12057409886485792925"

@@ -50,6 +50,6 @@ Now backend servers no longer serve the user traffic hitting at VIP.
 
 This completes the lab excercise. Check out our [GitHub repository](https://github.com/citrix/citrix-adc-ansible-modules/) to setup Ansible for Citrix ADC in your environment.
 
-Also checkout our [sample playbooks](https://github.com/citrix/citrix-adc-ansible-modules/tree/master/samples) for Web Firewall, Multi Cluster and other advanced use-cases.
+Also checkout our [sample playbooks](https://github.com/citrix/citrix-adc-ansible-modules/tree/master/sample_playbooks) for Web Firewall, Multi Cluster and other advanced use-cases.
 
 Thank you!
