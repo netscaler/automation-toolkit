@@ -65,7 +65,7 @@ Then access one of following labs to do some hands-on training using Terraform o
 |-----------------------------|----------------------------|----------------------------|
 | [Deliver Apps with NetScaler and Terraform:<br/> Basic Load Balancing Configurations.](https://community.netscaler.com/s/netscaler-labs?labId=000001068) | Terraform | [YouTube](https://youtu.be/tl453GW_sxQ) | 
 | [Basic Content Switching Configuration using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001281) | Terraform | [YouTube](https://www.youtube.com/watch?v=LlGqbzyruUA&ab_channel=NetScaler) |
-| [Basic Rewrite / Responder Policies Configuration using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001283) | Terraform |  | 
+| [Basic Rewrite / Responder Policies Configuration using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001283) | Terraform | [YouTube](https://www.youtube.com/watch?v=cl3yHiwvNJY&list=PLq9Ti1Jr8MhGj3xSb4-LpD78hEiaGw5RT&index=4&ab_channel=NetScaler) | 
 | [Basic Application Protection Configuration (WAF) using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001284) | Terraform |  | 
 | [Deliver Apps with NetScaler and Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001069) | Ansible |  | 
 
