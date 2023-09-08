@@ -29,6 +29,7 @@ In case you are looking for something that you can't find in the following links
     - [NetScaler GCP GDM Templates](#automation-toolkit-repositories)
     - [Terraform Cloud Scripts](#automation-toolkit-repositories)
 - [Examples Library](#examples-library)
+- [Golden Templates](#golden-templates)
 <br/><br/>
 
 # Community 
@@ -137,6 +138,20 @@ We have created many examples of how to use our toolkit. These examples cover di
 | [NetScaler BLX Automation Scripts](https://github.com/citrix/terraform-provider-citrixblx/tree/master/examples) | Terraform configuration scripts that cover different examples of how to use the NetScaler BLX Terraform provider. |
 | [NetScaler ADM Automation Scripts](https://github.com/citrix/terraform-provider-citrixadm/tree/master/examples) | Terraform configuration scripts that cover different examples of how to use the NetScaler ADM Terraform provider. |
 | [Ansible Playbooks for ADC and ADM](https://github.com/citrix/citrix-adc-ansible-modules/tree/master#adc-modules) | Ansible Playbooks that cover different examples of how to use the NetScaler Ansible Modules to configure different features on ADC or ADM. |
+<br/><br/>
+
+# Golden Templates 
+Using a predefined Infrastructure-as-Code template allows administrators to deploy systems consistently with clear and known configuration that follows NetScaler best practices. Our engineering teams have created these templates for you that cover different use case. Please use the following links to navigate to the best practices that you are interested. If you can't find something you are looking for send us an email at NetScaler-AutomationToolkit@cloud.com and we'll be happy to help you. 
+
+|            Title            |            Tool            |           Details            |
+|-----------------------------|-------------------------------|-------------------------------|
+| [Configure a simplified gateway with LDAP and RADIUS authentication](https://github.com/netscaler/automation-toolkit/tree/main/golden_templates/netscaler_gateway/ldap_radius) | Terraform | Best practices to configure a simplified gateway with LDAP and RADIUS authentication using Terraform |
+| [Configure a simplified gateway with SAML authentication](https://github.com/netscaler/automation-toolkit/tree/main/golden_templates/netscaler_gateway/saml) | Terraform | Best practices to configure a simplified gateway with SAML authentication using Terraform |
+| [Configure a simplified gateway with OAuth authentication](https://github.com/netscaler/automation-toolkit/tree/main/golden_templates/netscaler_gateway/oauth) | Terraform | Best practices to configure a simplified gateway with OAuth authentication using Terraform |
+| [Upgrade a NetScaler standalone appliance](https://github.com/netscaler/automation-toolkit/tree/main/golden_templates/upgrade-netscaler/standalone) | Ansible | Best practices to upgrade a NetScaler standalone appliance using Ansible |
+| [Upgrade a NetScaler high availability pair](https://github.com/netscaler/automation-toolkit/tree/main/golden_templates/upgrade-netscaler/high-availability/normal-mode) | Ansible | Best practices to upgrade a NetScaler high availability pair using Ansible |
+| [Upgrade a NetScaler high availability pair using In Service Software Upgrade (ISSU)](https://github.com/netscaler/automation-toolkit/tree/main/golden_templates/upgrade-netscaler/high-availability/issu-mode) | Ansible | Best practices to upgrade a NetScaler high availability using In Service Software Upgrade (ISSU) with Ansible |
+
 <br/><br/>
 
 ![Alt text](/assets/netscalerautomationtoolkit.png "NetScaler Automation Toolkit")
