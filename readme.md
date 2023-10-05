@@ -23,7 +23,8 @@ In case you are looking for something that you can't find in the following links
     - [Terraform Provider for NetScaler SDX](#automation-toolkit-repositories)
     - [Terraform Provider for NetScaler BLX](#automation-toolkit-repositories)
     - [Terraform Provider for NetScaler ADM](#automation-toolkit-repositories)
-    - [Ansible Modules for NetScaler ADC and ADM](#automation-toolkit-repositories)
+    - [Ansible Modules for NetScaler ADC](#automation-toolkit-repositories)
+    - [Ansible Modules for NetScaler ADM](#automation-toolkit-repositories)
     - [NetScaler AWS CloudFormation Templates](#automation-toolkit-repositories)
     - [NetScaler Azure ARM Templates](#automation-toolkit-repositories)
     - [NetScaler GCP GDM Templates](#automation-toolkit-repositories)
@@ -117,7 +118,8 @@ Our Automation Toolkit is fully open-sourced. Using the following links you can 
 | [Terraform Provider for NetScaler SDX](https://github.com/citrix/terraform-provider-citrixsdx) | Terraform provider for NetScaler SDX provides Infrastructure as Code (IaC) to manage your ADCs via SDX. Using the terraform provider you can provision VPXs on SDX, start, stop, reboot the VPXs on SDX. |
 | [Terraform Provider for NetScaler BLX](https://github.com/citrix/terraform-provider-citrixblx) | NetScaler has developed a Terraform provider for automating Citrix BLX deployments and configurations. Using Terraform, you can deploying and configure a NetScaler ADC BLX. |
 | [Terraform Provider for NetScaler ADM](https://github.com/citrix/terraform-provider-citrixadm) | Terraform provider for NetScaler ADM Service provides Infrastructure as Code (IaC) to manage your ADCs via ADM. Using the terraform provider you can onboard ADCs in ADM, assign licenses, create and trigger stylebooks, run configpacks etc. |
-| [Ansible Modules for NetScaler ADC and ADM](https://github.com/citrix/citrix-adc-ansible-modules) | This repository contains two collections: One for NetScaler ADC Ansible modules and one for NetSclaer ADM Ansible modules. |
+| [Ansible Modules for NetScaler ADC](https://github.com/citrix/citrix-adc-ansible-modules) | This repository contains the NetScaler ADC Ansible modules. |
+| [Ansible Modules for NetScaler ADM](https://github.com/netscaler/ansible-collection-netscaleradc/tree/citrix.adc) | This repository contains two collections: One for the ADM Ansible modules and one for the old NetSclaer ADC Ansible modules. |
 | [NetScaler AWS CloudFormation Templates](https://github.com/citrix/citrix-adc-aws-cloudformation) | This is a repository for NetScaler ADC's CloudFormation templates for deploying NetScaler ADC in AWS (Amazon Web Services). |
 | [NetScaler Azure ARM Templates](https://github.com/citrix/citrix-adc-azure-templates) | This repository hosts NetScaler ADC ARM (Azure Resource Manager) templates for deploying Citrix ADC in Microsoft Azure Cloud Services. |
 | [NetScaler GCP GDM Templates](https://github.com/citrix/citrix-adc-gdm-templates) | This repository hosts NetScaler ADC GDM templates for deploying a NetScaler ADC VPX instance on the Google Cloud Platform. |
