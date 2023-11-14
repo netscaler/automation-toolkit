@@ -70,7 +70,9 @@ Then access one of following labs to do some hands-on training using Terraform o
 | [Basic Rewrite / Responder Policies Configuration using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001283) | Terraform | [YouTube](https://www.youtube.com/watch?v=cl3yHiwvNJY&list=PLq9Ti1Jr8MhGj3xSb4-LpD78hEiaGw5RT&index=4&ab_channel=NetScaler) | [Code](https://github.com/netscaler/automation-toolkit/tree/main/labs/netscaler-adc-basic-rewrite-responder-policies-configuration-using-terraform) |
 | [Basic Application Protection Configuration (WAF) using Terraform.](https://community.netscaler.com/s/netscaler-labs?labId=000001284) | Terraform |  | [Code](https://github.com/netscaler/automation-toolkit/tree/main/labs/netscaler-adc-basic-application-protection-configuration-waf-using-terraform) |
 | [Deliver Apps with NetScaler and Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001069) | Ansible |  | [Code](https://github.com/netscaler/automation-toolkit/tree/main/labs/deliver-apps-with-citrix-adc-and-ansible) |
-
+| [Basic Content Switching Configuration using Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001392) | Ansible | | |
+| [Basic Rewrite / Responder Policies Configuration using Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001393) | Ansible | | |
+| [Basic Application Protection Configuration (WAF) using Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001394) | Terraform |  | |
 <br/><br/>
 
 <img src="assets/terraformlab1part1.gif"  width="40%" height="30%">
