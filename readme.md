@@ -72,7 +72,7 @@ Then access one of following labs to do some hands-on training using Terraform o
 | [Deliver Apps with NetScaler and Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001069) | Ansible |  | [Code](https://github.com/netscaler/automation-toolkit/tree/main/labs/deliver-apps-with-citrix-adc-and-ansible) |
 | [Basic Content Switching Configuration using Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001392) | Ansible | | |
 | [Basic Rewrite / Responder Policies Configuration using Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001393) | Ansible | | |
-| [Basic Application Protection Configuration (WAF) using Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001394) | Terraform |  | |
+| [Basic Application Protection Configuration (WAF) using Ansible.](https://community.netscaler.com/s/netscaler-labs?labId=000001394) | Ansible |  | |
 <br/><br/>
 
 <img src="assets/terraformlab1part1.gif"  width="40%" height="30%">
