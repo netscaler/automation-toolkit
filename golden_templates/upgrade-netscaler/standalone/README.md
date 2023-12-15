@@ -37,9 +37,16 @@
 1. Edit the `inventory.ini` file with the NSIP of the NetScalers.
 2. Update the `variables.yaml` file with the build_location and build_file_name, referring to the path and file name of the build image.
 3. Run
+   a. If there is passwordless authentication between the vm/laptop (where ansible is running) and the NetScaler
 
    ```bash
    ansible-playbook standalone_upgrade.yaml -i inventory.ini`
+   ```
+
+   b. If there is no passwordless authentication between the vm/laptop (where ansible is running) and the NetScaler
+
+   ```bash
+   ansible-playbook standalone_upgrade.yaml -i inventory.ini --ask-pass`
    ```
 
 ## Further Reference
