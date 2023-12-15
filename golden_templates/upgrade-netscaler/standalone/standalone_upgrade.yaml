@@ -10,7 +10,7 @@
 
   tasks:
     - name: Finding the current version of the NetScaler
-      ansible.builtin.shell: "nscli -s -U :{{nitro_user}}:{{nitro_pass}} show version | grep -i 'NetScaler NS'"
+      shell: "nscli -s -U :{{nitro_user}}:{{nitro_pass}} show version | grep -i 'NetScaler NS'"
 
       register: version
 
@@ -20,12 +20,12 @@
       register: present_version
 
     - name: NetScaler is already at the desired version
-      debug:
+      ansible.builtin.debug:
         msg: "NetScaler is already at the desired version {{netscaler_target_version}}. Ending the play for {{nsip}}"
       when: present_version['msg'] == netscaler_target_version
 
     - name: End play for host {{nsip}}
-      meta: end_host
+      ansible.builtin.meta: end_host
       when: present_version['msg'] == netscaler_target_version
 
     - name: Copy build file from local machine to the Remote NetScaler
