@@ -1,0 +1,156 @@
+- name: Demo | NetScaler | Basic Content Switching Configuration
+  hosts: demo_netscalers
+  gather_facts: false
+  tasks:
+    # add service svc-red-server 10.10.10.15 HTTP 80
+    - name: Demo | service-red-server
+      delegate_to: localhost
+      netscaler.adc.service:
+        state: present
+
+        name: svc-red-server
+        ipaddress: 10.10.10.15
+        servicetype: HTTP
+        port: 80
+
+    # add service svc-green-server 10.10.10.166 HTTP 80
+    - name: Demo | service-green-server
+      delegate_to: localhost
+      netscaler.adc.service:
+        state: present
+
+        name: svc-green-server
+        ipaddress: 10.10.10.166
+        servicetype: HTTP
+        port: 80
+
+    # add lb vserver lb-red-server HTTP
+    - name: Demo | lbvserver-red-server
+      delegate_to: localhost
+      netscaler.adc.lbvserver:
+        state: present
+
+        name: lb-red-server
+        servicetype: HTTP
+
+        # bind lb vserver lb-red-server svc-red-server
+        lbvserver_service_binding:
+          mode: desired # desired | bind | unbind
+          binding_members:
+            - name: lb-red-server
+              servicename: svc-red-server
+
+    # add lb vserver lb-green-server HTTP
+    - name: Demo | lbvserver-green-server
+      delegate_to: localhost
+      netscaler.adc.lbvserver:
+        state: present
+
+        name: lb-green-server
+        servicetype: HTTP
+
+        # bind lb vserver lb-green-server svc-green-server
+        lbvserver_service_binding:
+          mode: desired # desired | bind | unbind
+          binding_members:
+            - name: lb-green-server
+              servicename: svc-green-server
+
+    # # bind lb vserver lb-red-server svc-red-server
+    # - name: Demo | red-server-service-lb-binding
+    #   delegate_to: localhost
+    #   netscaler.adc.lbvserver_service_binding:
+    #     state: present
+
+    #     name: lb-red-server
+    #     servicename: svc-red-server
+
+    # # bind lb vserver lb-green-server svc-green-server
+    # - name: Demo | green-server-service-lb-binding
+    #   delegate_to: localhost
+    #   netscaler.adc.lbvserver_service_binding:
+    #     state: present
+
+    #     name: lb-green-server
+    #     servicename: svc-green-server
+
+    # add cs action csaction-red-server -targetLBVserver lb-red-server
+    - name: Demo | csaction-red-server
+      delegate_to: localhost
+      netscaler.adc.csaction:
+        state: present
+
+        name: csaction-red-server
+        targetlbvserver: lb-red-server
+
+    # add cs action csaction-green-server -targetLBVserver lb-green-server
+    - name: Demo | csaction-green-server
+      delegate_to: localhost
+      netscaler.adc.csaction:
+        state: present
+
+        name: csaction-green-server
+        targetlbvserver: lb-green-server
+
+    # add cs policy cspolicy-red-server -rule "HTTP.REQ.URL.SET_TEXT_MODE(IGNORECASE).STARTSWITH(\"/red\")" -action csaction-red-server
+    - name: Demo | cspolicy-red-server
+      delegate_to: localhost
+      netscaler.adc.cspolicy:
+        state: present
+
+        policyname: cspolicy-red-server
+        rule: "HTTP.REQ.URL.SET_TEXT_MODE(IGNORECASE).STARTSWITH(\"/red\")"
+        action: csaction-red-server
+
+    # add cs policy cspolicy-green-server -rule "HTTP.REQ.URL.SET_TEXT_MODE(IGNORECASE).STARTSWITH(\"/green\")" -action csaction-green-server
+    - name: Demo | cspolicy-green-server
+      delegate_to: localhost
+      netscaler.adc.cspolicy:
+        state: present
+
+        policyname: cspolicy-green-server
+        rule: "HTTP.REQ.URL.SET_TEXT_MODE(IGNORECASE).STARTSWITH(\"/green\")"
+        action: csaction-green-server
+
+    # add cs vserver demo-csvserver HTTP 10.10.10.150 80
+    - name: Demo | demo-csvserver
+      delegate_to: localhost
+      netscaler.adc.csvserver:
+        state: present
+
+        name: demo-csvserver
+        servicetype: HTTP
+        ipv46: 10.10.10.150
+        port: 80
+
+        # bind cs vserver demo-csvserver -policyName cspolicy-red-server -priority 100
+        # bind cs vserver demo-csvserver -policyName cspolicy-green-server -priority 110
+        csvserver_cspolicy_binding:
+          mode: desired # desired | bind | unbind
+          binding_members:
+            - name: demo-csvserver
+              policyname: cspolicy-red-server
+              priority: 100
+            - name: demo-csvserver
+              policyname: cspolicy-green-server
+              priority: 110
+
+    # # bind cs vserver demo-csvserver -policyName cspolicy-red-server -priority 100
+    # - name: Demo | red-csvserver-cspolicy-binding
+    #   delegate_to: localhost
+    #   netscaler.adc.csvserver_cspolicy_binding:
+    #     state: present
+
+    #     name: demo-csvserver
+    #     policyname: cspolicy-red-server
+    #     priority: 100
+
+    # # bind cs vserver demo-csvserver -policyName cspolicy-green-server -priority 110
+    # - name: Demo | green-csvserver-cspolicy-binding
+    #   delegate_to: localhost
+    #   netscaler.adc.csvserver_cspolicy_binding:
+    #     state: present
+
+    #     name: demo-csvserver
+    #     policyname: cspolicy-green-server
+    #     priority: 110

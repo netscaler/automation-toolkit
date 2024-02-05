@@ -1,8 +1,8 @@
-# NetScaler Automation Toolkit 
-NetScaler Automation Toolkit contains all the NetScaler tools to be used for making NetScaler part of DevOps and Automation pipelines. 
+# NetScaler Automation Toolkit
+NetScaler Automation Toolkit contains all the NetScaler tools to be used for making NetScaler part of DevOps and Automation pipelines.
 
 The toolkit includes integrations with [CCA Tools](https://en.wikipedia.org/wiki/Continuous_configuration_automation), [APIs, SDKs](https://www.netscaler.com/platform/apis), native Public Cloud templates and more with a goal of supporting Day 0 - N operations using [Infrastructure-as-Code](https://www.netscaler.com/platform/infrastructure-as-code), scripting or coding.
-NetScaler Automation is focusing on the practices of following the disciplines of Network Infrastructure and the disciplines of Programming. This repo has been created to serve as a one-stop shop for all information related to NetScaler Automation. 
+NetScaler Automation is focusing on the practices of following the disciplines of Network Infrastructure and the disciplines of Programming. This repo has been created to serve as a one-stop shop for all information related to NetScaler Automation.
 
 Below you will find more details on the topics of Infrastructure Provisioning, Configuration Managements, along with “how-to” guides, examples, labs, Golden templates and more.
 In case you are looking for something that you can't find in the following links or you need further assistance please contact us on NetScaler-AutomationToolkit@cloud.com.
@@ -10,53 +10,44 @@ In case you are looking for something that you can't find in the following links
 ![Alt text](/assets/day0-n.png "Day 0 - N Operations")
 <br/><br/>
 
-# Contents 
+# Contents
 
+- [NetScaler Automation Toolkit](#netscaler-automation-toolkit)
+- [Contents](#contents)
 - [Community](#community)
 - [Events](#events)
 - [Training Labs](#training-labs)
-- [Technical Blogs](#blogs)
+- [Technical Blogs](#technical-blogs)
 - [Recorded Sessions](#recorded-sessions)
 - [Partners](#partners)
 - [Automation Toolkit Repositories](#automation-toolkit-repositories)
-    - [Terraform Provider for NetScaler ADC](#automation-toolkit-repositories)
-    - [Terraform Provider for NetScaler SDX](#automation-toolkit-repositories)
-    - [Terraform Provider for NetScaler BLX](#automation-toolkit-repositories)
-    - [Terraform Provider for NetScaler ADM](#automation-toolkit-repositories)
-    - [Ansible Modules for NetScaler ADC](#automation-toolkit-repositories)
-    - [Ansible Modules for NetScaler ADM](#automation-toolkit-repositories)
-    - [NetScaler AWS CloudFormation Templates](#automation-toolkit-repositories)
-    - [NetScaler Azure ARM Templates](#automation-toolkit-repositories)
-    - [NetScaler GCP GDM Templates](#automation-toolkit-repositories)
-    - [Terraform Cloud Scripts](#automation-toolkit-repositories)
 - [Examples Library](#examples-library)
 - [Golden Templates](#golden-templates)
+
+# Community
+NetScaler Automation Toolkit consists of solutions that are open-sourced and we are trying to build a community for everyone that is intrested in using NetScaler with DevOps / Automation.
+<br/><br/>Are you interested in engaging with us? Please be part of the NetScaler Community and check [NetScaler Automation](https://community.netscaler.com/s/topic/0TO8b000000QnUHGA0/automation?tabset-3320a=2).
 <br/><br/>
 
-# Community 
-NetScaler Automation Toolkit consists of solutions that are open-sourced and we are trying to build a community for everyone that is intrested in using NetScaler with DevOps / Automation. 
-<br/><br/>Are you interested in engaging with us? Please be part of the NetScaler Community and check [NetScaler Automation](https://community.netscaler.com/s/topic/0TO8b000000QnUHGA0/automation?tabset-3320a=2). 
-<br/><br/>
-
-# Events 
+# Events
 Do you want to learn more about the work we are doing? What are the new Automation Toolkit updates? Or check a technical session? Join our upcoming webinars and live demo sessions or watch the recordings on demand.
-|            Title            |            Details            |            Date            | 
-|-----------------------------|-------------------------------|----------------------------|
-| [Security as Code (SaC) 101:<br/> Configure NetScaler WAF using Ansible to protect your applications.](https://community.netscaler.com/s/webinar/a078b000016LKr6AAG/embrace-security-as-codesac-to-configure-netscaler-waf-to-protect-your-apps) | NetScaler Live Demo | Wednesday, Sep 20th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET |
-| [Automating NetScaler Configurations with NetScaler Ansible Collection v.2.0](https://community.netscaler.com/s/webinar/a078b000010ripvAAA/automating-netscaler-configurations-with-ansible) | NetScaler Live Demo | Wednesday, Aug 16th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET |
-| [NetScaler Automation Toolkit Updates + <br/> NetScaler Ansible Collection v.2.0 Alpha](https://community.netscaler.com/s/webinar/a078b000010rf74AAA/netscaler-connect-webinar-27th-july) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, Jul 27th, 2023 <br/>10:30 AM CEST |
-| [NetScaler Automation Toolkit Updates + <br/> NetScaler Ansible Collection v.2.0 Alpha](https://community.netscaler.com/s/webinar/a078b000010rf74AAA/netscaler-connect-webinar-27th-july) | NetScaler Connect Webinar <br/> Americas | Thursday, Apr 27th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST |
-| [Automating Gateway Configurations with Golden Terraform templates:<br/> LDAP - RADIUS configuration.](https://community.netscaler.com/s/webinar/a078b000010v51jAAA/automating-gateway-configurations-with-golden-terraform-templates-ldap-radius) | NetScaler Live Demo | Wednesday, Jun 07th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET |
-| [NetScaler Automation Toolkit Updates + <br/> Learning Material & Training Labs for Automation Toolkit](https://community.netscaler.com/s/webinar/a078b000010v2BQAAY/netscaler-connect-webinar-25th-may) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, May 25th, 2023 <br/>10:30 AM CEST |
-| [NetScaler Automation Toolkit Updates + <br/> Learning Material & Training Labs for Automation Toolkit](https://community.netscaler.com/s/webinar/a078b000010v2BQAAY/netscaler-connect-webinar-25th-may) | NetScaler Connect Webinar <br/> Americas | Thursday, May 25th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST |
-| [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, Apr 27th, 2023 <br/>10:30 AM CEST | 
-| [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Americas | Thursday, Apr 27th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST | 
-| [Transforming a Linux Host into a NetScaler BLX with Terraform:<br/> A Hands-On Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uvztAAA/transforming-a-linux-host-into-a-netscaler-blx-with-terraform) | NetScaler Live Demo | Wednesday, Feb 22nd, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET |
-| [Automating NetScaler Configurations Using Terraform:<br/> A Hands-on Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uwOMAAY/automating-netscaler-configurations-using-terraform-a-handson-demonstration) | NetScaler Live Demo | Monday, Feb 06th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET |
+|            Title            |            Details            |            Date            | Code |
+|-----------------------------|-------------------------------|----------------------------| -- |
+| [Security as Code (SaC) 101:<br/> Configure NetScaler WAF using Ansible to protect your applications.](https://community.netscaler.com/s/webinar/a078b000016LKr6AAG/embrace-security-as-codesac-to-configure-netscaler-waf-to-protect-your-apps) | NetScaler Live Demo | Wednesday, Sep 20th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Code](events/20230920/) |
+| [Automating NetScaler Configurations with NetScaler Ansible Collection v.2.0](https://community.netscaler.com/s/webinar/a078b000010ripvAAA/automating-netscaler-configurations-with-ansible) | NetScaler Live Demo | Wednesday, Aug 16th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Code](events/20230816/) |
+| [NetScaler Automation Toolkit Updates + <br/> NetScaler Ansible Collection v.2.0 Alpha](https://community.netscaler.com/s/webinar/a078b000010rf74AAA/netscaler-connect-webinar-27th-july) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, Jul 27th, 2023 <br/>10:30 AM CEST | |
+| [NetScaler Automation Toolkit Updates + <br/> NetScaler Ansible Collection v.2.0 Alpha](https://community.netscaler.com/s/webinar/a078b000010rf74AAA/netscaler-connect-webinar-27th-july) | NetScaler Connect Webinar <br/> Americas | Thursday, Apr 27th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST | |
+| [Automating Gateway Configurations with Golden Terraform templates:<br/> LDAP - RADIUS configuration.](https://community.netscaler.com/s/webinar/a078b000010v51jAAA/automating-gateway-configurations-with-golden-terraform-templates-ldap-radius) | NetScaler Live Demo | Wednesday, Jun 07th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Code](events/20230607/) |
+| [NetScaler Automation Toolkit Updates + <br/> Learning Material & Training Labs for Automation Toolkit](https://community.netscaler.com/s/webinar/a078b000010v2BQAAY/netscaler-connect-webinar-25th-may) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, May 25th, 2023 <br/>10:30 AM CEST | |
+| [NetScaler Automation Toolkit Updates + <br/> Learning Material & Training Labs for Automation Toolkit](https://community.netscaler.com/s/webinar/a078b000010v2BQAAY/netscaler-connect-webinar-25th-may) | NetScaler Connect Webinar <br/> Americas | Thursday, May 25th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST | |
+| [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, Apr 27th, 2023 <br/>10:30 AM CEST | |
+| [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Americas | Thursday, Apr 27th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST | |
+| [Transforming a Linux Host into a NetScaler BLX with Terraform:<br/> A Hands-On Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uvztAAA/transforming-a-linux-host-into-a-netscaler-blx-with-terraform) | NetScaler Live Demo | Wednesday, Feb 22nd, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | |
+| [Automating NetScaler Configurations Using Terraform:<br/> A Hands-on Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uwOMAAY/automating-netscaler-configurations-using-terraform-a-handson-demonstration) | NetScaler Live Demo | Monday, Feb 06th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Code](events/20230206/) |
 <br/><br/>
 
-# Training Labs 
-Do you want to explore Automation Toolkit and you don't know where to start? We are providing hands-on training labs with zero cost. 
+# Training Labs
+Do you want to explore Automation Toolkit and you don't know where to start? We are providing hands-on training labs with zero cost.
 
 Firt login to [NetScaler Community](https://community.netscaler.com/) using your social media account or create an account using your personal email and then.
 
@@ -80,7 +71,7 @@ Then access one of following labs to do some hands-on training using Terraform o
 
 <br/><br/>
 
-# Technical Blogs 
+# Technical Blogs
 Do you want to read some cool articles around Automation? <br/>
 Please check the following links.
 
@@ -90,7 +81,7 @@ Please check the following links.
 | [Ansible Blogs](https://community.netscaler.com/s/topic/0TO8b000000QnX6GAK/ansible?tabset-3320a=2) | Ansible Blogs |
 <br/><br/>
 
-# Recorded Sessions 
+# Recorded Sessions
 Do you want to read some cool articles around Automation? <br/>
 Please check the following links.
 
@@ -107,14 +98,14 @@ Please check the following links.
 | [Deploy Citrix ADC High Availability Solution on GCP using Google Deployment Manager Templates](https://www.youtube.com/watch?v=KF5OKKrCJNU&ab_channel=Citrix) | Google Cloud Deployment Manager (GDM) templates |
 <br/><br/>
 
-# Partners  
+# Partners
 We have strong technical partnerships with both [HashiCorp](https://www.hashicorp.com/partners/tech/citrix#all) and [Red Hat](https://www.ansible.com/integrations/networks/citrixadc).
 Both our Terraform providers and our Ansible modules have been certified from our partners. Please check under [Automation Toolkit Repositories](#automation-toolkit-repositories) to find more details for each one of our integrations.
 <br/><br/>
 
 # Automation Toolkit Repositories
-Our Automation Toolkit is fully open-sourced. Using the following links you can navigate to the relevant repositories where we maintain the implementation for each one of our solutions. 
-|            Title            |            Details            |   
+Our Automation Toolkit is fully open-sourced. Using the following links you can navigate to the relevant repositories where we maintain the implementation for each one of our solutions.
+|            Title            |            Details            |
 |-----------------------------|-------------------------------|
 | [Terraform Provider for NetScaler ADC](https://github.com/citrix/terraform-provider-citrixadc) | NetScaler has developed a Terraform provider for automating NetScaler ADC deployments and configurations. Using Terraform, you can configure your ADCs for different use-cases such as Load Balancing, SSL, Content Switching, GSLB, WAF etc. |
 | [Terraform Provider for NetScaler SDX](https://github.com/citrix/terraform-provider-citrixsdx) | Terraform provider for NetScaler SDX provides Infrastructure as Code (IaC) to manage your ADCs via SDX. Using the terraform provider you can provision VPXs on SDX, start, stop, reboot the VPXs on SDX. |
@@ -129,9 +120,9 @@ Our Automation Toolkit is fully open-sourced. Using the following links you can 
 <br/><br/>
 
 # Examples Library
-We have created many examples of how to use our toolkit. These examples cover different use case. Please use the following links to navigate to the examples for the solution that you are interested. If you can't find something you are looking for send us an email at NetScaler-AutomationToolkit@cloud.com and we'll be happy to help you. 
+We have created many examples of how to use our toolkit. These examples cover different use case. Please use the following links to navigate to the examples for the solution that you are interested. If you can't find something you are looking for send us an email at NetScaler-AutomationToolkit@cloud.com and we'll be happy to help you.
 
-|            Title            |            Details            |   
+|            Title            |            Details            |
 |-----------------------------|-------------------------------|
 | [Azure Deployment Scripts](https://github.com/citrix/terraform-cloud-scripts/tree/master/azure#azure-automation-scripts) | Terraform configuration scripts to deploy NetScaler ADC on Microsoft Azure. |
 | [AWS Deployment Scripts](https://github.com/citrix/terraform-cloud-scripts/tree/master/aws) | Terraform configuration scripts to deploy NetScaler ADC on AWS. |
@@ -144,8 +135,8 @@ We have created many examples of how to use our toolkit. These examples cover di
 | [Ansible Playbooks for ADC and ADM](https://github.com/citrix/citrix-adc-ansible-modules/tree/master#adc-modules) | Ansible Playbooks that cover different examples of how to use the NetScaler Ansible Modules to configure different features on ADC or ADM. |
 <br/><br/>
 
-# Golden Templates 
-Using a predefined Infrastructure-as-Code template allows administrators to deploy systems consistently with clear and known configuration that follows NetScaler best practices. Our engineering teams have created these templates for you that cover different use case. Please use the following links to navigate to the best practices that you are interested. If you can't find something you are looking for send us an email at NetScaler-AutomationToolkit@cloud.com and we'll be happy to help you. 
+# Golden Templates
+Using a predefined Infrastructure-as-Code template allows administrators to deploy systems consistently with clear and known configuration that follows NetScaler best practices. Our engineering teams have created these templates for you that cover different use case. Please use the following links to navigate to the best practices that you are interested. If you can't find something you are looking for send us an email at NetScaler-AutomationToolkit@cloud.com and we'll be happy to help you.
 
 |            Title            |            Tool            |           Details            |
 |-----------------------------|-------------------------------|-------------------------------|

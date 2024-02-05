@@ -1,0 +1,189 @@
+- name: Demo | Configure NetScaler WAF
+  hosts: demo_netscalers
+  gather_facts: false
+  tasks:
+    - name: Add SNIP to communicate with the servers
+      delegate_to: localhost
+      netscaler.adc.nsip:
+        nsip: "{{ nsip }}"
+        nitro_user: "{{ nitro_user }}"
+        nitro_pass: "{{ new_password }}"
+        nitro_protocol: "{{ nitro_protocol }}"
+        validate_certs: "{{ validate_certs }}"
+
+        state: present
+
+        ipaddress: "{{ snip }}"
+        netmask: "{{ snip_netmask }}"
+        type: SNIP
+
+    - name: Enable CS, LB, AppFw features
+      delegate_to: localhost
+      netscaler.adc.nsfeature:
+        state: enabled
+        feature:
+          - CS
+          - LB
+          - AppFw
+
+    - name: Add svc-red-server
+      delegate_to: localhost
+      netscaler.adc.service:
+        state: present
+
+        name: svc-red-server
+        ipaddress: "{{ server1_ip }}"
+        servicetype: HTTP
+        port: 80
+
+    - name: Add svc-green-server
+      delegate_to: localhost
+      netscaler.adc.service:
+        state: present
+
+        name: svc-green-server
+        ipaddress: "{{ server2_ip }}"
+        servicetype: HTTP
+        port: 80
+
+    - name: Add AppFw Profile for BLOCK+LOG SQL Injection
+      delegate_to: localhost
+      netscaler.adc.appfwprofile:
+        state: present
+
+        name: block_log_sql_injection_appfwprofile
+        type:
+          - HTML
+        starturlaction:
+          - none
+        sqlinjectionaction:
+          - log
+          - block
+
+    - name: Add AppFw Policy to inspect traffic to green-server for SQL Injection
+      delegate_to: localhost
+      netscaler.adc.appfwpolicy:
+        state: present
+
+        name: block_log_sql_injection_appfwpolicy
+        rule: "HTTP.REQ.URL.STARTSWITH(\"/green\")&&HTTP.REQ.URL.CONTAINS(\"aspx\")"
+        profilename: block_log_sql_injection_appfwprofile
+
+    - name: Add AppFw Profile to LOG SQL Injection
+      delegate_to: localhost
+      netscaler.adc.appfwprofile:
+        state: present
+
+        name: log_sql_injection_appfwprofile
+        type:
+          - HTML
+        starturlaction:
+          - none
+        sqlinjectionaction:
+          - log
+          - block
+
+    - name: Add AppFw Policy to inspect traffic to red-server for SQL Injection
+      delegate_to: localhost
+      netscaler.adc.appfwpolicy:
+        state: present
+
+        name: log_sql_injection_appfwpolicy
+        rule: "HTTP.REQ.URL.STARTSWITH(\"/red\")&&HTTP.REQ.URL.CONTAINS(\"aspx\")"
+        profilename: log_sql_injection_appfwprofile
+
+    - name: Add lb-red-server
+      delegate_to: localhost
+      netscaler.adc.lbvserver:
+        state: present
+
+        name: lb-red-server
+        servicetype: HTTP
+
+        lbvserver_service_binding:
+          mode: desired # desired | bind | unbind
+          binding_members:
+            - name: lb-red-server
+              servicename: svc-red-server
+
+    - name: Add lb-green-server
+      delegate_to: localhost
+      netscaler.adc.lbvserver:
+        state: present
+
+        name: lb-green-server
+        servicetype: HTTP
+
+        lbvserver_service_binding:
+          mode: desired # desired | bind | unbind
+          binding_members:
+            - name: lb-green-server
+              servicename: svc-green-server
+
+        lbvserver_appfwpolicy_binding:
+          mode: desired # desired | bind | unbind
+          binding_members:
+            - name: lb-green-server
+              policyname: block_log_sql_injection_appfwpolicy
+              priority: 100
+
+    - name: Add csaction-red-server
+      delegate_to: localhost
+      netscaler.adc.csaction:
+        state: present
+
+        name: csaction-red-server
+        targetlbvserver: lb-red-server
+
+    - name: Add csaction-green-server
+      delegate_to: localhost
+      netscaler.adc.csaction:
+        state: present
+
+        name: csaction-green-server
+        targetlbvserver: lb-green-server
+
+    - name: Add cspolicy-red-server
+      delegate_to: localhost
+      netscaler.adc.cspolicy:
+        state: present
+
+        policyname: cspolicy-red-server
+        rule: "HTTP.REQ.URL.SET_TEXT_MODE(IGNORECASE).STARTSWITH(\"/red\")"
+        action: csaction-red-server
+
+    - name: Add cspolicy-green-server
+      delegate_to: localhost
+      netscaler.adc.cspolicy:
+        state: present
+
+        policyname: cspolicy-green-server
+        rule: "HTTP.REQ.URL.SET_TEXT_MODE(IGNORECASE).STARTSWITH(\"/green\")"
+        action: csaction-green-server
+
+    - name: Add CS Vserver to direct traffic to red-server or green-server
+      delegate_to: localhost
+      netscaler.adc.csvserver:
+        state: present
+
+        name: demo-csvserver
+        servicetype: HTTP
+        ipv46: "{{ vip_ip }}"
+        port: 80
+
+        csvserver_cspolicy_binding:
+          mode: desired # desired | bind | unbind
+          binding_members:
+            - name: demo-csvserver
+              policyname: cspolicy-red-server
+              priority: 100
+            - name: demo-csvserver
+              policyname: cspolicy-green-server
+              priority: 110
+
+        csvserver_appfwpolicy_binding:
+          mode: desired # desired | bind | unbind
+          binding_members:
+            - name: demo-csvserver
+              policyname: log_sql_injection_appfwpolicy
+              priority: 20
