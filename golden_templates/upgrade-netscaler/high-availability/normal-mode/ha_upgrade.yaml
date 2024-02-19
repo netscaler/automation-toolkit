@@ -34,34 +34,83 @@
       when: present_version['msg'] != netscaler_target_version
 
     - name: Upgrade build in Secondary node
-      shell: "./installns -Y"
+      shell: "./installns -Y -n"
       when: present_version['msg'] != netscaler_target_version
       args:
         chdir: "{{ netscaler_build_location }}"
-      async: 120
-      poll: 0
 
-    - name: Wait for the new Primary to Come-up
+    - name: Pause
+      when: present_version['msg'] != netscaler_target_version
+      pause:
+        seconds: 30
+    
+    - name: Reset the connection
+      when: present_version['msg'] != netscaler_target_version
+      meta: reset_connection
+
+    - name: Reboot the Secondary
+      when: present_version['msg'] != netscaler_target_version
+      vars:
+        ansible_remote_tmp: ./
+        ansible_python_interpreter: "{{ local_python_path }}"
+      delegate_to : localhost
+      ansible.builtin.uri:
+        url: "http://{{nsip}}/nitro/v1/config/reboot"
+        method: POST
+        status_code: [200, 201]
+        body_format: json
+        body:
+          reboot:
+            warm: false
+        headers:
+          Content-Type: "application/json"
+          X-NITRO-USER: "{{nitro_user}}"
+          X-NITRO-PASS: "{{nitro_pass}}"
+
+    - name: Wait for the Secondary to Come-up
       when: present_version['msg'] != netscaler_target_version
       wait_for_connection:
         connect_timeout: 10
         sleep: 10
-        delay: 120
+        delay: 180
         timeout: 900
 
     - name: Wait for HA sync 
       when: present_version['msg'] != netscaler_target_version
       wait_for:
-        delay: 30
+        timeout: 30
+
+    - name: Show version after Upgrade
+      when: present_version['msg'] != netscaler_target_version
+      shell: "nscli -s -U :{{nitro_user}}:{{nitro_pass}} show version"
+      register: version_res
+
+    - name: version result after Upgrade
+      when: present_version['msg'] != netscaler_target_version
+      debug:
+        msg: "{{ version_res[\"stdout_lines\"][0] | regex_replace(': Build ','-') | regex_replace('.nc.*$', '') | regex_replace('^.*NS', '') }}"
+      register: final_version
+
+    - name: Compare the version
+      when: final_version['msg'] == netscaler_target_version
+      debug:
+        msg: "The ugraded version is {{final_version}}"
+      failed_when: final_version['msg'] != netscaler_target_version
 
     - name: Force HA failover
       shell: "nscli -s -U :{{nitro_user}}:{{nitro_pass}} force ha failover -force"
+
+    - name: Pausing for 60 seconds
+      pause:
+        seconds: 60
+
 
 - hosts: primary_netscaler
   remote_user: "{{ nitro_user }}"
   connection: citrix.adc.ssh_citrix_adc
   gather_facts: False
   vars_files: variables.yaml
+
   vars:
     ansible_python_interpreter: '{{ netscaler_python_path | default("/var/python/bin/python") }}'
 
@@ -85,32 +134,76 @@
         src: "{{local_build_file_full_path_with_name}}"
         dest: "{{netscaler_build_location}}"
       when: ((want_to_copy_build == "yes") or (want_to_copy_build == "YES")) and (present_version['msg'] != netscaler_target_version)
-
+    
     - name: Untar the build file in Old Primary node
-      shell: "tar -xvf {{ netscaler_build_location }}{{ netscaler_build_file_name }} -C {{ netscaler_build_location }}"
-      register: tar_output 
+      shell: "tar -xvzf {{ netscaler_build_location }}{{ netscaler_build_file_name }} -C {{ netscaler_build_location }}"
+      register: tar_output
       when: present_version['msg'] != netscaler_target_version
 
-    - name: Upgrade build in Old Primary
+    - name: Upgrade build in Old Primary node
+      shell: "./installns -Y -n"
       when: present_version['msg'] != netscaler_target_version
-      shell: "./installns -Y"
       args:
         chdir: "{{ netscaler_build_location }}"
-      async: 120
-      poll: 0
+
+    - name: Pause
+      when: present_version['msg'] != netscaler_target_version
+      pause:
+        seconds: 30
+    
+    - name: Reset the connection
+      when: present_version['msg'] != netscaler_target_version
+      meta: reset_connection
+
+    - name: Reboot the Old Primary
+      when: present_version['msg'] != netscaler_target_version
+      vars:
+        ansible_remote_tmp: ./
+        ansible_python_interpreter: "{{ local_python_path }}"
+      delegate_to : localhost
+      ansible.builtin.uri:
+        url: "http://{{nsip}}/nitro/v1/config/reboot"
+        method: POST
+        status_code: [200, 201]
+        body_format: json
+        body:
+          reboot:
+            warm: false
+        headers:
+          Content-Type: "application/json"
+          X-NITRO-USER: "{{nitro_user}}"
+          X-NITRO-PASS: "{{nitro_pass}}"
 
     - name: Wait for the Old Primary to Come-up
       when: present_version['msg'] != netscaler_target_version
       wait_for_connection:
         connect_timeout: 10
         sleep: 10
-        delay: 120
+        delay: 180
         timeout: 900
 
     - name: Wait for HA sync 
       when: present_version['msg'] != netscaler_target_version
       wait_for:
-        delay: 30
+        timeout: 30
+
+    - name: Show version after Upgrade
+      when: present_version['msg'] != netscaler_target_version
+      shell: "nscli -s -U :{{nitro_user}}:{{nitro_pass}} show version"
+      register: version_res
+
+    - name: version result after Upgrade
+      when: present_version['msg'] != netscaler_target_version
+      debug:
+        msg: "{{ version_res[\"stdout_lines\"][0] | regex_replace(': Build ','-') | regex_replace('.nc.*$', '') | regex_replace('^.*NS', '') }}"
+      register: final_version
+
+    - name: Compare the version
+      when: final_version['msg'] == netscaler_target_version
+      debug:
+        msg: "The ugraded version is {{final_version}}"
+      failed_when: final_version['msg'] != netscaler_target_version
 
     - name: Force HA failover
       shell: "nscli -s -U :{{nitro_user}}:{{nitro_pass}} force ha failover -force"
+
