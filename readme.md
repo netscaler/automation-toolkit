@@ -120,7 +120,7 @@ Our Automation Toolkit is fully open-sourced. Using the following links you can 
 | [Terraform Cloud Scripts](https://github.com/citrix/terraform-cloud-scripts) | This repository contains terraform scripts for automating NetScaler ADC deployment on AWS, Azure, GCP and ESX. |
 <br/><br/>
 
-# NetScaler Next-Gen API]
+# NetScaler Next-Gen API
 A suite of App-Centric declarative REST APIs that enables Automation
 This is the next generation version of NetScaler’s application programming interface (API). By taking an App-Centric approach, you will now focus on what you know best, your application, and the Next-Gen API takes care of the rest, eliminating the need for any prior NetScaler knowledge. Please visit our [Developer Docs](https://developer-docs.netscaler.com/en-us/nextgen-api/getting-started-guide.html) to find out more on how to use the API. 
 <br/><br/>
