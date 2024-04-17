@@ -21,7 +21,7 @@ In case you are looking for something that you can't find in the following links
 - [Recorded Sessions](#recorded-sessions)
 - [Partners](#partners)
 - [Automation Toolkit Repositories](#automation-toolkit-repositories)
-- [NetScaler Next-Gen API](#next-gen-api)
+- [NetScaler Next-Gen API](#netscaler-next-gen-api)
 - [Examples Library](#examples-library)
 - [Golden Templates](#golden-templates)
 
