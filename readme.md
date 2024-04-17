@@ -21,6 +21,7 @@ In case you are looking for something that you can't find in the following links
 - [Recorded Sessions](#recorded-sessions)
 - [Partners](#partners)
 - [Automation Toolkit Repositories](#automation-toolkit-repositories)
+- [NetScaler Next-Gen API](#next-gen-api)
 - [Examples Library](#examples-library)
 - [Golden Templates](#golden-templates)
 
@@ -118,6 +119,12 @@ Our Automation Toolkit is fully open-sourced. Using the following links you can 
 | [NetScaler GCP GDM Templates](https://github.com/citrix/citrix-adc-gdm-templates) | This repository hosts NetScaler ADC GDM templates for deploying a NetScaler ADC VPX instance on the Google Cloud Platform. |
 | [Terraform Cloud Scripts](https://github.com/citrix/terraform-cloud-scripts) | This repository contains terraform scripts for automating NetScaler ADC deployment on AWS, Azure, GCP and ESX. |
 <br/><br/>
+
+# NetScaler Next-Gen API]
+A suite of App-Centric declarative REST APIs that enables Automation
+This is the next generation version of NetScaler’s application programming interface (API). By taking an App-Centric approach, you will now focus on what you know best, your application, and the Next-Gen API takes care of the rest, eliminating the need for any prior NetScaler knowledge. Please visit our [Developer Docs](https://developer-docs.netscaler.com/en-us/nextgen-api/getting-started-guide.html) to find out more on how to use the API. 
+<br/><br/>
+
 
 # Examples Library
 We have created many examples of how to use our toolkit. These examples cover different use case. Please use the following links to navigate to the examples for the solution that you are interested. If you can't find something you are looking for send us an email at NetScaler-AutomationToolkit@cloud.com and we'll be happy to help you.
