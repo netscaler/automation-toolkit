@@ -62,7 +62,7 @@ variable "email_server_ip_or_name" {
 }
 
 variable "email_server_port" {
-    type = string
+  type = string
 }
 
 
