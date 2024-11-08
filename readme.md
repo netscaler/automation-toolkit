@@ -34,6 +34,7 @@ NetScaler Automation Toolkit consists of solutions that are open-sourced and we 
 Do you want to learn more about the work we are doing? What are the new Automation Toolkit updates? Or check a technical session? Join our upcoming webinars and live demo sessions or watch the recordings on demand.
 |            Title            |            Details            |            Date            | Code |
 |-----------------------------|-------------------------------|----------------------------| -- |
+| [Integrate the NetScaler Next-Gen API with your existing CLI and / or Nitro API workflows](https://community.citrix.com/events/event/112-community-live-demo-integrate-the-netscaler-next-gen-api-with-your-existing-cli-andor-nitro-api-workflows/) | NetScaler Live Demo | Thursday, Nov 13th, 2024 <br/>5:00 PM CET | |
 | [Automating your network for operational excellence](https://youtu.be/MhQmZktxJjI?si=WN3EtHLXhQp7DRTK) | Red Hat Webinar | Thursday, June 20th, 2024 <br/>1:00 PM EDT | [Code](https://github.com/konkaltsas/netscaler-aap) |
 | [Strengthen your security controls with NetScaler’s Next-Gen APIs](https://community.citrix.com/events/event/71-netscaler-live-demo-strengthen-your-security-controls-with-netscaler’s-next-gen-api/) | NetScaler Live Demo | Thursday, May 15th, 2024 <br/> 5:00 PM CET | |
 | [Walkthrough on contributing to NetScaler GitHub repos](https://youtu.be/-h6EofV7lVc?si=_O65jxaJUWG5C95o&t=1779) | NetScaler Connect Webinar | Thursday, Apr 25th, 2024 <br/>10:30 AM CEST | |
