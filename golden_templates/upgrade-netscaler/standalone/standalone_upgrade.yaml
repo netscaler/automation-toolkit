@@ -1,7 +1,7 @@
 - name: Upgrade Standalone NetScaler
   hosts: netscalers
   remote_user: "{{ nitro_user }}"
-  connection: citrix.adc.ssh_citrix_adc
+  connection: netscaler.adc.ssh_netscaler_adc
   gather_facts: false
   vars_files: variables.yaml
 
@@ -39,7 +39,7 @@
       register: tar_output
 
     - name: Upgrade build
-      shell: "./installns -Y"
+      shell: "nohup ./installns -Y > /var/tmp/install.log 2>&1 &"
       args:
         chdir: "{{ netscaler_build_location }}"
       async: 120
