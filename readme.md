@@ -16,7 +16,6 @@ In case you are looking for something that you can't find in the following links
 - [Contents](#contents)
 - [Community](#community)
 - [Events](#events)
-- [Training Labs](#training-labs)
 - [Technical Blogs](#technical-blogs)
 - [Recorded Sessions](#recorded-sessions)
 - [Partners](#partners)
@@ -53,31 +52,6 @@ Do you want to learn more about the work we are doing? What are the new Automati
 | [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Americas | Thursday, Apr 27th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST | |
 | [Transforming a Linux Host into a NetScaler BLX with Terraform:<br/> A Hands-On Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uvztAAA/transforming-a-linux-host-into-a-netscaler-blx-with-terraform) | NetScaler Live Demo | Wednesday, Feb 22nd, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | |
 | [Automating NetScaler Configurations Using Terraform:<br/> A Hands-on Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uwOMAAY/automating-netscaler-configurations-using-terraform-a-handson-demonstration) | NetScaler Live Demo | Monday, Feb 06th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Code](events/20230206/) |
-<br/><br/>
-
-# Training Labs
-Do you want to explore Automation Toolkit and you don't know where to start? We are providing hands-on training labs with zero cost.
-
-Firt login to [NetScaler Community](https://community.netscaler.com/) using your social media account or create an account using your personal email and then.
-
-Then access one of following labs to do some hands-on training using Terraform or Ansible with NetScaler.
-<br/><br/>
-
-|            Title            |            Solution            |            Video            |             Code            |
-|-----------------------------|----------------------------|----------------------------|----------------------------|
-| [Deliver Apps with NetScaler and Terraform:<br/> Basic Load Balancing Configurations.](https://community.citrix.com/labs/deliver-apps-with-netscaler-and-terraform/) | Terraform | [YouTube](https://youtu.be/tl453GW_sxQ) | [Code](https://github.com/netscaler/automation-toolkit/tree/main/labs/deliver-apps-with-netscaler-adc-terraform-provider) |
-| [Basic Content Switching Configuration using Terraform.](https://community.citrix.com/labs/basic-content-switching-configuration-using-terraform/) | Terraform | [YouTube](https://www.youtube.com/watch?v=LlGqbzyruUA&ab_channel=NetScaler) | [Code](https://github.com/netscaler/automation-toolkit/tree/main/labs/basic-content-switching-configuration-using-terraform) |
-| [Basic Rewrite / Responder Policies Configuration using Terraform.](https://community.citrix.com/labs/basic-rewrite-responder-policies-configuration-using-terraform/) | Terraform | [YouTube](https://www.youtube.com/watch?v=cl3yHiwvNJY&list=PLq9Ti1Jr8MhGj3xSb4-LpD78hEiaGw5RT&index=4&ab_channel=NetScaler) | [Code](https://github.com/netscaler/automation-toolkit/tree/main/labs/netscaler-adc-basic-rewrite-responder-policies-configuration-using-terraform) |
-| [Basic Application Protection Configuration (WAF) using Terraform.](https://community.citrix.com/labs/basic-application-protection-configuration-waf-using-terraform/) | Terraform |  | [Code](https://github.com/netscaler/automation-toolkit/tree/main/labs/netscaler-adc-basic-application-protection-configuration-waf-using-terraform) |
-| [Deliver Apps with NetScaler and Ansible.](https://community.citrix.com/labs/deliver-apps-with-netscaler-and-ansible/) | Ansible |  | [Code](https://github.com/netscaler/automation-toolkit/tree/main/labs/deliver-apps-with-citrix-adc-and-ansible) |
-| [Basic Content Switching Configuration using Ansible.](https://community.citrix.com/labs/basic-content-switching-configuration-using-ansible/) | Ansible | | |
-| [Basic Rewrite / Responder Policies Configuration using Ansible.](https://community.citrix.com/labs/basic-rewrite-responder-policies-configuration-using-ansible/) | Ansible | | |
-| [Basic Application Protection Configuration (WAF) using Ansible.](https://community.citrix.com/labs/basic-application-protection-configuration-waf-using-ansible/) | Ansible |  | |
-<br/><br/>
-
-<img src="assets/terraformlab1part1.gif"  width="40%" height="30%">
-<img src="assets/terraformlab1part2.gif"  width="40%" height="30%">
-
 <br/><br/>
 
 # Technical Blogs
