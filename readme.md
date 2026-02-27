@@ -7,7 +7,7 @@ NetScaler Automation is focusing on the practices of following the disciplines o
 Below you will find more details on the topics of Infrastructure Provisioning, Configuration Managements, along with “how-to” guides, examples, Golden templates and more.
 In case you are looking for something that you can't find in the following links or you need further assistance please contact us on NetScaler-AutomationToolkit@cloud.com.
 <br/><br/>
-![Alt text](/assets/day0-n.png "Day 0 - N Operations")
+![Alt text](/assets/operations.png "Day 0 - N Operations")
 <br/><br/>
 
 # Contents
