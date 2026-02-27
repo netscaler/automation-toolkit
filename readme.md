@@ -1,13 +1,13 @@
 # NetScaler Automation Toolkit
 NetScaler Automation Toolkit contains all the NetScaler tools to be used for making NetScaler part of DevOps and Automation pipelines.
 
-The toolkit includes integrations with [CCA Tools](https://en.wikipedia.org/wiki/Continuous_configuration_automation), [APIs, SDKs](https://www.netscaler.com/platform/apis), native Public Cloud templates and more with a goal of supporting Day 0 - N operations using [Infrastructure-as-Code](https://www.netscaler.com/platform/infrastructure-as-code), scripting or coding.
+The toolkit includes integrations with [CCA Tools](https://en.wikipedia.org/wiki/Continuous_configuration_automation), [APIs, SDKs](https://www.netscaler.com/platform/apis), provisioning templates and more with a goal of supporting Day 0 - N operations using [Infrastructure-as-Code](https://www.netscaler.com/platform/infrastructure-as-code), scripting or coding.
 NetScaler Automation is focusing on the practices of following the disciplines of Network Infrastructure and the disciplines of Programming. This repo has been created to serve as a one-stop shop for all information related to NetScaler Automation.
 
-Below you will find more details on the topics of Infrastructure Provisioning, Configuration Managements, along with “how-to” guides, examples, labs, Golden templates and more.
+Below you will find more details on the topics of Infrastructure Provisioning, Configuration Managements, along with “how-to” guides, examples, Golden templates and more.
 In case you are looking for something that you can't find in the following links or you need further assistance please contact us on NetScaler-AutomationToolkit@cloud.com.
 <br/><br/>
-![Alt text](/assets/day0-n.png "Day 0 - N Operations")
+![Alt text](/assets/operations.png "Day 0 - N Operations")
 <br/><br/>
 
 # Contents
@@ -26,7 +26,7 @@ In case you are looking for something that you can't find in the following links
 
 # Community
 NetScaler Automation Toolkit consists of solutions that are open-sourced and we are trying to build a community for everyone that is intrested in using NetScaler with DevOps / Automation.
-<br/><br/>Are you interested in engaging with us? Please be part of the NetScaler Community and check [NetScaler Automation](https://community.netscaler.com/s/topic/0TO8b000000QnUHGA0/automation?tabset-3320a=2).
+<br/><br/>Are you interested in engaging with us? Please be part of the NetScaler Community and check [NetScaler Automation](https://community.citrix.com/forums/forum/7-netscaler-automation-apis/).
 <br/><br/>
 
 # Events
@@ -54,14 +54,13 @@ Do you want to learn more about the work we are doing? What are the new Automati
 | [Automating NetScaler Configurations Using Terraform:<br/> A Hands-on Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uwOMAAY/automating-netscaler-configurations-using-terraform-a-handson-demonstration) | NetScaler Live Demo | Monday, Feb 06th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Code](events/20230206/) |
 <br/><br/>
 
-# Technical Blogs
-Do you want to read some cool articles around Automation? <br/>
-Please check the following links.
+# NetScaler Automation Blogs
+Do you want to read articles around NetScaler Automation strategy? <br/>
+Please check the following link.
 
 |            Category            |            Details            |
 |-----------------------------|-------------------------------|
-| [Terraform Blogs](https://community.netscaler.com/s/topic/0TO8b000000QnX5GAK/terraform?tabset-3320a=2) | Terraform Blogs |
-| [Ansible Blogs](https://community.netscaler.com/s/topic/0TO8b000000QnX6GAK/ansible?tabset-3320a=2) | Ansible Blogs |
+| [NetScaler Automation Blogs](https://www.netscaler.com/blog/author/konstantika/) | NetScaler Automation Strategy |
 <br/><br/>
 
 # Recorded Sessions
@@ -82,7 +81,7 @@ Please check the following links.
 <br/><br/>
 
 # Partners
-We have strong technical partnerships with both [HashiCorp](https://www.hashicorp.com/partners/tech/citrix#all) and [Red Hat](https://www.ansible.com/integrations/networks/citrixadc).
+We have strong technical partnerships with both [HashiCorp](https://www.hashicorp.com/en/partners/tech/csg#all) and [Red Hat](https://catalog.redhat.com/en/partners/detail/citrix).
 Both our Terraform providers and our Ansible modules have been certified from our partners. Please check under [Automation Toolkit Repositories](#automation-toolkit-repositories) to find more details for each one of our integrations.
 <br/><br/>
 
@@ -92,14 +91,9 @@ Our Automation Toolkit is fully open-sourced. Using the following links you can 
 |-----------------------------|-------------------------------|
 | [Terraform Provider for NetScaler ADC](https://github.com/citrix/terraform-provider-citrixadc) | NetScaler has developed a Terraform provider for automating NetScaler ADC deployments and configurations. Using Terraform, you can configure your ADCs for different use-cases such as Load Balancing, SSL, Content Switching, GSLB, WAF etc. |
 | [Terraform Provider for NetScaler SDX](https://github.com/citrix/terraform-provider-citrixsdx) | Terraform provider for NetScaler SDX provides Infrastructure as Code (IaC) to manage your ADCs via SDX. Using the terraform provider you can provision VPXs on SDX, start, stop, reboot the VPXs on SDX. |
-| [Terraform Provider for NetScaler BLX](https://github.com/citrix/terraform-provider-citrixblx) | NetScaler has developed a Terraform provider for automating Citrix BLX deployments and configurations. Using Terraform, you can deploying and configure a NetScaler ADC BLX. |
-| [Terraform Provider for NetScaler ADM](https://github.com/citrix/terraform-provider-citrixadm) | Terraform provider for NetScaler ADM Service provides Infrastructure as Code (IaC) to manage your ADCs via ADM. Using the terraform provider you can onboard ADCs in ADM, assign licenses, create and trigger stylebooks, run configpacks etc. |
+| [Terraform Provider for NetScaler Console](https://github.com/citrix/terraform-provider-citrixadm) | Terraform provider for NetScaler ADM Service provides Infrastructure as Code (IaC) to manage your ADCs via ADM. Using the terraform provider you can onboard ADCs in ADM, assign licenses, create and trigger stylebooks, run configpacks etc. |
 | [Ansible Modules for NetScaler ADC](https://github.com/citrix/citrix-adc-ansible-modules) | This repository contains the NetScaler ADC Ansible modules. |
-| [Ansible Modules for NetScaler ADM](https://github.com/netscaler/ansible-collection-netscaleradc/tree/citrix.adc) | This repository contains two collections: One for the ADM Ansible modules and one for the old NetSclaer ADC Ansible modules. |
-| [NetScaler AWS CloudFormation Templates](https://github.com/citrix/citrix-adc-aws-cloudformation) | This is a repository for NetScaler ADC's CloudFormation templates for deploying NetScaler ADC in AWS (Amazon Web Services). |
-| [NetScaler Azure ARM Templates](https://github.com/citrix/citrix-adc-azure-templates) | This repository hosts NetScaler ADC ARM (Azure Resource Manager) templates for deploying Citrix ADC in Microsoft Azure Cloud Services. |
-| [NetScaler GCP GDM Templates](https://github.com/citrix/citrix-adc-gdm-templates) | This repository hosts NetScaler ADC GDM templates for deploying a NetScaler ADC VPX instance on the Google Cloud Platform. |
-| [Terraform Cloud Scripts](https://github.com/citrix/terraform-cloud-scripts) | This repository contains terraform scripts for automating NetScaler ADC deployment on AWS, Azure, GCP and ESX. |
+| [Terraform Cloud Scripts](https://github.com/citrix/terraform-cloud-scripts) | This repository contains terraform scripts for automating NetScaler ADC deployment on AWS, Azure, GCP and ESXi. |
 <br/><br/>
 
 # NetScaler Next-Gen API
@@ -118,8 +112,7 @@ We have created many examples of how to use our toolkit. These examples cover di
 | [ESXi Deployment Scripts](https://github.com/citrix/terraform-cloud-scripts/tree/master/esxi) | Terraform configuration scripts to deploy NetScaler ADC on ESXi hosts using the vsphere terraform provider. |
 | [NetScaler ADC Configuration Scripts ](https://github.com/citrix/terraform-provider-citrixadc/tree/master/examples#citrix-adc-configuration-examples) | Terraform configuration scripts that cover different examples of how to use the NetScaler ADC Terraform provider. |
 | [NetScaler SDX Automation Scripts](https://github.com/citrix/terraform-provider-citrixsdx/tree/master/examples) | Terraform configuration scripts that cover different examples of how to use the NetScaler SDX Terraform provider to manage your ADCs via SDX. Using this provider you can provision VPXs on SDX, start, stop, reboot the VPXs on SDX. |
-| [NetScaler BLX Automation Scripts](https://github.com/citrix/terraform-provider-citrixblx/tree/master/examples) | Terraform configuration scripts that cover different examples of how to use the NetScaler BLX Terraform provider. |
-| [NetScaler ADM Automation Scripts](https://github.com/citrix/terraform-provider-citrixadm/tree/master/examples) | Terraform configuration scripts that cover different examples of how to use the NetScaler ADM Terraform provider. |
+| [NetScaler ADM Automation Scripts](https://github.com/citrix/terraform-provider-citrixadm/tree/master/examples) | Terraform configuration scripts that cover different examples of how to use the NetScaler Console Terraform provider. |
 | [Ansible Playbooks for ADC and ADM](https://github.com/citrix/citrix-adc-ansible-modules/tree/master#adc-modules) | Ansible Playbooks that cover different examples of how to use the NetScaler Ansible Modules to configure different features on ADC or ADM. |
 <br/><br/>
 
