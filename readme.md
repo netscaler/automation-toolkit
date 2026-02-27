@@ -2,8 +2,11 @@
 NetScaler Automation Toolkit contains all the NetScaler tools to be used for making NetScaler part of DevOps and Automation pipelines.
 
 The toolkit includes integrations with [CCA Tools](https://en.wikipedia.org/wiki/Continuous_configuration_automation), [APIs, SDKs](https://www.netscaler.com/platform/apis), provisioning templates and more with a goal of supporting Day 0 - N operations using [Infrastructure-as-Code](https://www.netscaler.com/platform/infrastructure-as-code), scripting or coding.
-NetScaler Automation is focusing on the practices of following the disciplines of Network Infrastructure and the disciplines of Programming. This repo has been created to serve as a one-stop shop for all information related to NetScaler Automation.
+NetScaler Automation is focusing on the practices of following the disciplines of Network Infrastructure and the disciplines of Programming. 
 
+You can find more about our Automation strategy by reading the [Blogs](https://www.netscaler.com/blog/author/konstantika/) written by our Automation Product Management.
+
+This repo has been created to serve as a one-stop shop for all information related to NetScaler Automation.
 Below you will find more details on the topics of Infrastructure Provisioning, Configuration Managements, along with “how-to” guides, examples, Golden templates and more.
 In case you are looking for something that you can't find in the following links or you need further assistance please contact us on NetScaler-AutomationToolkit@cloud.com.
 <br/><br/>
@@ -16,7 +19,6 @@ In case you are looking for something that you can't find in the following links
 - [Contents](#contents)
 - [Community](#community)
 - [Events](#events)
-- [Technical Blogs](#technical-blogs)
 - [Recorded Sessions](#recorded-sessions)
 - [Partners](#partners)
 - [Automation Toolkit Repositories](#automation-toolkit-repositories)
@@ -54,15 +56,6 @@ Do you want to learn more about the work we are doing? What are the new Automati
 | [Automating NetScaler Configurations Using Terraform:<br/> A Hands-on Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uwOMAAY/automating-netscaler-configurations-using-terraform-a-handson-demonstration) | NetScaler Live Demo | Monday, Feb 06th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Code](events/20230206/) |
 <br/><br/>
 
-# NetScaler Automation Blogs
-Do you want to read articles around NetScaler Automation strategy? <br/>
-Please check the following link.
-
-|            Category            |            Details            |
-|-----------------------------|-------------------------------|
-| [NetScaler Automation Blogs](https://www.netscaler.com/blog/author/konstantika/) | NetScaler Automation Strategy |
-<br/><br/>
-
 # Recorded Sessions
 Do you want to read some cool articles around Automation? <br/>
 Please check the following links.
@@ -75,9 +68,6 @@ Please check the following links.
 | [Deploying and Configuring Citrix ADC BLX (Baremetal) with Terraform](https://www.youtube.com/watch?v=3hNWfRKidNI) | Terraform |
 | [Quickly Provision and Configure Citrix ADC High Availability(HA) across Availability Zones in AWS](https://www.youtube.com/watch?v=LgGS0-Q5ODE) | Terraform |
 | [Get Your Apps to Production Faster with an Infrastructure as Code Approach to ADC](https://www.youtube.com/watch?v=VIqmQ31of_0) | Terraform |
-| [Citrix ADC HA pair deployment on AWS made effortless: using Cloud Formation Template](https://www.youtube.com/watch?v=H_Nv688Im2M&ab_channel=Citrix) | AWS CloudFormation Templates (CFT) Templates |
-| [AWS QuickStart for Citrix ADC: Simple and Speedy deployment of Citrix ADC VPX for web applications](https://www.youtube.com/watch?v=1ht2q4Gwfmk&ab_channel=Citrix) | AWS CloudFormation Templates (CFT) Templates |
-| [Deploy Citrix ADC High Availability Solution on GCP using Google Deployment Manager Templates](https://www.youtube.com/watch?v=KF5OKKrCJNU&ab_channel=Citrix) | Google Cloud Deployment Manager (GDM) templates |
 <br/><br/>
 
 # Partners
