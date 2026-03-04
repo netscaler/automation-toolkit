@@ -52,7 +52,6 @@ Do you want to learn more about the work we are doing? What are the new Automati
 | [NetScaler Automation Toolkit Updates + <br/> Learning Material & Training Labs for Automation Toolkit](https://community.netscaler.com/s/webinar/a078b000010v2BQAAY/netscaler-connect-webinar-25th-may) | NetScaler Connect Webinar <br/> Americas | Thursday, May 25th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST | |
 | [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Europe & ASIA | Thursday, Apr 27th, 2023 <br/>10:30 AM CEST | |
 | [NetScaler Automation Toolkit Updates](https://community.netscaler.com/s/webinar/a078b000010uzE3AAI/netscaler-connect-webinar-27th-april) | NetScaler Connect Webinar <br/> Americas | Thursday, Apr 27th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST | |
-| [Transforming a Linux Host into a NetScaler BLX with Terraform:<br/> A Hands-On Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uvztAAA/transforming-a-linux-host-into-a-netscaler-blx-with-terraform) | NetScaler Live Demo | Wednesday, Feb 22nd, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | |
 | [Automating NetScaler Configurations Using Terraform:<br/> A Hands-on Demonstration.](https://community.netscaler.com/s/webinar/a078b000010uwOMAAY/automating-netscaler-configurations-using-terraform-a-handson-demonstration) | NetScaler Live Demo | Monday, Feb 06th, 2023 <br/>11:00 AM EDT <br/> 8:00 AM PST <br/> 5:00 PM CET | [Code](events/20230206/) |
 <br/><br/>
 
@@ -63,9 +62,7 @@ Please check the following links.
 |            Category            |            Solution            |
 |-----------------------------|-------------------------------|
 | [Infrastructure as Code with Citrix ADC](https://www.youtube.com/watch?v=ZmJXtXmkCPE) | All solutions |
-| [Dynamic Networking with Consul-Terraform-Sync for Terraform Enterprise and Citrix ADC](https://www.youtube.com/watch?v=OQzPBmZ7uZ8) | Terraform |
 | [Automate your Citrix ADC deployments with Terraform](https://www.youtube.com/watch?v=IJIIWm5rzpQ&t=18s&ab_channel=Citrix) | Terraform |
-| [Deploying and Configuring Citrix ADC BLX (Baremetal) with Terraform](https://www.youtube.com/watch?v=3hNWfRKidNI) | Terraform |
 | [Quickly Provision and Configure Citrix ADC High Availability(HA) across Availability Zones in AWS](https://www.youtube.com/watch?v=LgGS0-Q5ODE) | Terraform |
 | [Get Your Apps to Production Faster with an Infrastructure as Code Approach to ADC](https://www.youtube.com/watch?v=VIqmQ31of_0) | Terraform |
 <br/><br/>
