@@ -2,7 +2,7 @@ terraform {
   required_providers {
     netscalersdx = {
       source  = "netscaler/netscalersdx"
-      version = ">= 0.7.4"
+      version = ">= 0.7.5"
     }
   }
 }

@@ -12,12 +12,12 @@ The provider performs the complete offline licensing workflow from the machine r
 4. Uploads the license blob back to the appliance via SFTP.
 5. Applies the license using the NITRO API and initiates a warm reboot.
 
-**Destroy / Update behaviour:** Deleting or modifying this resource in Terraform is a no-op — the license remains active on the appliance. Any change to `entitlement_name` or `is_fips` requires destroying and re-creating the resource (`terraform taint` or `-replace`).
+**Destroy / Update behaviour:** Deleting or modifying this resource in Terraform is a no-op — the license remains active on the appliance. Any change to `entitlement_name`, `is_fips`, or `restricted_mode` requires destroying and re-creating the resource (`terraform taint` or `-replace`).
 
 ## Prerequisites
 
 - Terraform >= 1.0
-- `citrix/citrixadc` provider **>= 2.1.3** (the version that includes offline LAS support)
+- `citrix/citrixadc` provider **>= 2.1.4** (the version that includes offline LAS support)
 - NetScaler ADC running a compatible build:
 
   | Version | Minimum Build (non-FIPS) | Minimum Build (FIPS) |
@@ -67,6 +67,7 @@ Edit the file with the details for your appliance:
 | `nitro_pass` | Yes | Password for `nsroot` |
 | `entitlement_name` | Yes | License entitlement name as listed in LAS customer entitlements (see below) |
 | `is_fips` | No | `true` for FIPS-enabled VPX only (default: `false`) |
+| `restricted_mode` | No | `true` to use JSON-based restricted activation instead of file upload (default: `false`) — see below |
 | `las_secrets_json` | No | Path to `las_secrets.json` (default: `./las_secrets.json`) |
 
 #### `entitlement_name` Values
@@ -86,6 +87,10 @@ Examples:
 | FIPS MPX | `FIPS MPX 14020 Premium` |
 
 > **Note:** The exact entitlement name must match what is listed for your account in LAS. The provider validates this against your customer entitlements at apply time.
+
+#### Restricted Mode
+
+When `restricted_mode = true`, the provider extracts the `lsid` and `pubkey` fields from the activation request package and sends them via a JSON-based API instead of uploading the full package file to the Citrix Cloud LAS service. Use this when outbound file uploads to Citrix Cloud are blocked in your environment.
 
 #### FIPS Notes
 

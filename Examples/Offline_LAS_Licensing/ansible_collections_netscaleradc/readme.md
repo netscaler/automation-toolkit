@@ -77,6 +77,7 @@ Edit the inventory to match your appliances. Each host entry needs:
 | `nitro_protocol` | No | `http` or `https` (default: `https`) |
 | `validate_certs` | No | `true` or `false` (default: `false`) |
 | `is_fips` | No | `true` for FIPS VPX appliances only (default: `false`) |
+| `restricted_mode` | No | `true` to use the restricted offline activation flow (default: `false`) — see below |
 
 #### `entitlement_name` Values
 
@@ -96,6 +97,10 @@ Examples:
 | FIPS VPX | `FIPS VPX 5000 Premium` |
 
 > **Note:** The exact entitlement name must match what is listed for your account in LAS. The module validates this against your customer entitlements at runtime.
+
+#### Restricted Mode
+
+When `restricted_mode: true` is set, the module uses an alternative LAS import endpoint that does **not** require uploading the full activation request package file. Instead it extracts the `lsid` and `pubkey` fields from the package and sends those directly to the LAS restricted import API. Use this when outbound file uploads to Citrix Cloud are blocked or not permitted in your environment.
 
 #### FIPS Notes
 

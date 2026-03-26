@@ -22,6 +22,12 @@ variable "entitlement_name" {
   description = "Entitlement name for the SDX license as listed in LAS customer entitlements (e.g. 'SDX 9195 Premium'). Must start with a valid SDX model prefix: SDX 89, SDX 91, SDX 92, SDX 14, SDX 15, SDX 16, SDX 17, or SDX 26."
 }
 
+variable "restricted_mode" {
+  type        = bool
+  description = "When true, uses JSON-based restricted offline activation instead of file upload. Use in environments where file uploads to the Citrix Cloud LAS API are blocked."
+  default     = false
+}
+
 variable "las_secrets_json" {
   type        = string
   description = "Absolute or module-relative path to the las_secrets.json credentials file."

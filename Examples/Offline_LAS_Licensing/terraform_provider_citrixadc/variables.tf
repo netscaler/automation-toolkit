@@ -28,6 +28,12 @@ variable "is_fips" {
   default     = false
 }
 
+variable "restricted_mode" {
+  type        = bool
+  description = "When true, uses JSON-based restricted offline activation instead of file upload. Use in environments where file uploads to the Citrix Cloud LAS API are blocked."
+  default     = false
+}
+
 variable "las_secrets_json" {
   type        = string
   description = "Absolute or module-relative path to the las_secrets.json credentials file."

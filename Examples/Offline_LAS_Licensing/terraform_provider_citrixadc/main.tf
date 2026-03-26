@@ -1,6 +1,7 @@
 resource "citrixadc_nslaslicense_offline" "license" {
   entitlement_name = var.entitlement_name
   is_fips          = var.is_fips
+  restricted_mode  = var.restricted_mode
   las_secrets_json = var.las_secrets_json
 }
 

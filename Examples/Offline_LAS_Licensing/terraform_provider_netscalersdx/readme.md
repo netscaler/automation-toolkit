@@ -12,7 +12,7 @@ The provider performs the complete offline licensing workflow from the machine r
 4. Uploads the license blob back to the appliance via SFTP.
 5. Applies the license via the SDX API and initiates a warm reboot.
 
-**Destroy / Update behaviour:** Deleting or modifying this resource in Terraform is a no-op — the license remains active on the appliance. Any change to `entitlement_name` requires destroying and re-creating the resource (`terraform taint` or `-replace`).
+**Destroy / Update behaviour:** Deleting or modifying this resource in Terraform is a no-op — the license remains active on the appliance. Any change to `entitlement_name` or `restricted_mode` requires destroying and re-creating the resource (`terraform taint` or `-replace`).
 
 ## Prerequisites
 
@@ -58,6 +58,7 @@ Edit the file with the details for your SDX appliance:
 | `sdx_username` | Yes | Must be `nsroot` |
 | `sdx_password` | Yes | Password for `nsroot` |
 | `entitlement_name` | Yes | SDX license entitlement name as listed in LAS customer entitlements (see table below) |
+| `restricted_mode` | No | `true` to use JSON-based restricted activation instead of file upload (default: `false`) — see below |
 | `las_secrets_json` | No | Path to `las_secrets.json` (default: `./las_secrets.json`) |
 
 > **Note:** The `sdx_username` must be `nsroot`. Other accounts are not supported for offline LAS licensing.
@@ -69,6 +70,10 @@ export NETSCALERSDX_HOST="https://10.0.0.5"
 export NETSCALERSDX_USERNAME="nsroot"
 export NETSCALERSDX_PASSWORD="<password>"
 ```
+
+#### Restricted Mode
+
+When `restricted_mode = true`, the provider extracts the `lsid` and `pubkey` fields from the SDX activation request package and sends them as a JSON body to the LAS restricted import API, instead of uploading the full package file. Use this in environments where file uploads to the Citrix Cloud LAS service are blocked (e.g., air-gapped or high-security environments).
 
 #### `entitlement_name` Values
 
