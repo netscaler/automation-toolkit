@@ -1,0 +1,39 @@
+---
+- name: Apply Offline LAS License to NetScaler ADC
+  hosts: netscalers
+  gather_facts: false
+  tasks:
+    - name: Apply offline LAS license (standard mode)
+      delegate_to: localhost
+      netscaler.adc.nslaslicense_offline:
+        nsip: "{{ nsip }}"
+        nitro_user: "{{ nitro_user }}"
+        nitro_pass: "{{ nitro_pass }}"
+        nitro_protocol: "{{ nitro_protocol | default('https') }}"
+        validate_certs: "{{ validate_certs | default(false) }}"
+        entitlement_name: "{{ entitlement_name }}"
+        is_fips: "{{ is_fips | default(false) }}"
+        las_secrets_json: "{{ las_secrets_json }}"
+      register: lic_result
+
+    - name: Display license result
+      ansible.builtin.debug:
+        var: lic_result
+
+    - name: Apply offline LAS license (restricted mode)
+      delegate_to: localhost
+      netscaler.adc.nslaslicense_offline:
+        nsip: "{{ nsip }}"
+        nitro_user: "{{ nitro_user }}"
+        nitro_pass: "{{ nitro_pass }}"
+        nitro_protocol: "{{ nitro_protocol | default('https') }}"
+        validate_certs: "{{ validate_certs | default(false) }}"
+        entitlement_name: "{{ entitlement_name }}"
+        is_fips: "{{ is_fips | default(false) }}"
+        las_secrets_json: "{{ las_secrets_json }}"
+        restricted_mode: "{{ restricted_mode | default(false) }}"
+      register: lic_result_restricted
+
+    - name: Display restricted mode license result
+      ansible.builtin.debug:
+        var: lic_result_restricted
