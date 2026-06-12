@@ -22,6 +22,7 @@ In case you are looking for something that you can't find in the following links
 - [Recorded Sessions](#recorded-sessions)
 - [Partners](#partners)
 - [Automation Toolkit Repositories](#automation-toolkit-repositories)
+- [nsconf2iac – NetScaler Configuration to IaC Converter](#nsconf2iac--netscaler-configuration-to-iac-converter)
 - [NetScaler Next-Gen API](#netscaler-next-gen-api)
 - [Examples Library](#examples-library)
 - [Golden Templates](#golden-templates)
@@ -81,6 +82,32 @@ Our Automation Toolkit is fully open-sourced. Using the following links you can 
 | [Terraform Provider for NetScaler Console](https://github.com/citrix/terraform-provider-citrixadm) | Terraform provider for NetScaler ADM Service provides Infrastructure as Code (IaC) to manage your ADCs via ADM. Using the terraform provider you can onboard ADCs in ADM, assign licenses, create and trigger stylebooks, run configpacks etc. |
 | [Ansible Modules for NetScaler ADC](https://github.com/citrix/citrix-adc-ansible-modules) | This repository contains the NetScaler ADC Ansible modules. |
 | [Terraform Cloud Scripts](https://github.com/citrix/terraform-cloud-scripts) | This repository contains terraform scripts for automating NetScaler ADC deployment on AWS, Azure, GCP and ESXi. |
+<br/><br/>
+
+# nsconf2iac – NetScaler Configuration to IaC Converter
+The nsconf2iac utility is designed to help customers transition from traditional, manually managed NetScaler configurations to Infrastructure-as-Code (IaC) workflows. 
+
+nsconf2iac converts existing NetScaler configuration files (ns.conf) into Terraform and Ansible‑compatible artifacts, providing a practical migration path for teams adopting automation without requiring a greenfield rebuild of their environments. 
+
+This utility is particularly useful for organizations that: 
+
+* Operate production NetScaler environments managed through CLI or GUI 
+* Want to adopt Terraform or Ansible while preserving proven configurations 
+* Need consistency and repeatability across dev, test, and production environments 
+* Migrate configurations between different environments 
+* Are modernizing operations toward DevOps or platform engineering practices 
+
+By replacing manual configuration changes with code‑driven workflows, nsconf2iac enables safer change management, version control, repeatable deployments, and easier rollback strategies—key foundations for scalable NetScaler automation. 
+
+Resources: Blog – New utility converts NetScaler configurations into IaC for greater automation: https://www.netscaler.com/blog/application-modernization/new-utility-converts-netscaler-configurations-into-iac-for-greater-automation/  
+
+## Access & Community 
+We believe in the power of open source and community collaboration. Building on our Terraform and Ansible integrations, nsconf2iac is available on GitHub. To request access, email 📧 netscaler-automationtoolkit@cloud.com with:
+
+* First Name
+* Last Name
+* Corporate Email
+* GitHub Username
 <br/><br/>
 
 # NetScaler Next-Gen API
