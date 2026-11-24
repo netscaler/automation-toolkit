@@ -1,0 +1,8 @@
+# Copy to terraform.auto.tfvars and adjust. *.tfvars is gitignored.
+gcp_project = "<YOUR_GCP_PROJECT>"
+region = "<YOUR_PREFERED_REGION>"
+nsip = "<NS_IP>"
+netscaler_private_vip = "192.168.42.2"
+csvserver_name = "kk-tf-common-cs"
+ns_username_secret = "ns-username"
+ns_password_secret = "ns-password"
