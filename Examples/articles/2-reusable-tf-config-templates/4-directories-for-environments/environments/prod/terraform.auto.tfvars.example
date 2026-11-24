@@ -1,0 +1,14 @@
+# Copy to terraform.auto.tfvars and adjust. *.tfvars is gitignored.
+gcp_project = "<YOUR_GCP_PROJECT>"
+region = "<YOUR_PREFERED_REGION>"
+nsip = "<PROD_NSIP>"
+# No VIP: the common content switching vserver owns it
+# netscaler_private_vip = "192.168.42.2"
+apps_private_ip_addresses = [
+  "10.156.0.13",
+  "10.156.0.12"
+]
+lbvserver_name = "kk-tf-prod-lb"
+servicegroup_name = "kk-tf-prod-servicegroup"
+ns_username_secret = "prod-ns-username"
+ns_password_secret = "prod-ns-password"

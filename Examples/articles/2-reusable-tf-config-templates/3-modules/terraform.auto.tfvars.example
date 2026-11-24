@@ -1,0 +1,11 @@
+# Copy to terraform.auto.tfvars and adjust. *.tfvars is gitignored.
+gcp_project = "<YOUR_GCP_PROJECT>"
+region = "<YOUR_PREFERED_REGION>"
+nsip = "<NS_IP>"
+netscaler_private_vip = "192.168.42.2"
+apps_private_ip_addresses = [
+  "10.156.0.11",
+  "10.156.0.10"
+]
+lbvserver_name = "kk-tf-test-lb"
+servicegroup_name = "kk-tf-test-servicegroup"
