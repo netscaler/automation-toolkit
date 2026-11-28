@@ -1,0 +1,10 @@
+---
+# The organisation's load balancer convention. Role vars outrank inventory and play
+# vars, so a caller cannot override these by accident. Change them here, once,
+# and every caller gets the change.
+lb_servicetype: HTTP
+lb_port: 80
+lb_method: ROUNDROBIN
+lb_clttimeout: 40
+lb_member_port: 80
+lb_member_weight: 1

@@ -1,0 +1,5 @@
+# inventory.yml / hosts.yml hold the NSIP, lab IP addresses and, in 1-simple, the NetScaler password.
+# Every root ships an .example instead. 4-inventories-per-environment commits group_vars (no secrets).
+**/inventory.yml
+**/hosts.yml
+*.retry

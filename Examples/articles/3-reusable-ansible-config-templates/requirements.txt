@@ -1,0 +1,8 @@
+# Python packages for the Ansible control node. ansible-core 2.22 requires Python >= 3.13 (3.13-3.15 supported).
+# Ubuntu/WSL: sudo apt install -y python3-venv python3-pip   (do not use sudo for the steps below)
+#   python3 -m venv ~/.venvs/netscaler-ansible && source ~/.venvs/netscaler-ansible/bin/activate
+#   python -m pip install -r requirements.txt    # activate the venv first, or Ubuntu blocks pip (PEP 668)
+# Collections are NOT installed from this file - use: ansible-galaxy collection install -r requirements.yml
+ansible-core>=2.22,<2.23   # latest release line supporting Python 3.14 (Ubuntu 26.04 default)
+requests>=2.18.4           # google.cloud.gcp_secret_manager lookup
+google-auth>=1.3.0         # google.cloud.gcp_secret_manager lookup

@@ -1,0 +1,25 @@
+---
+# common is not an environment: it is the shared content switching layer that owns the VIP
+# and routes <VIP>/dev/* and <VIP>/prod/* to the dev and prod lbvservers.
+ansible_connection: local
+ansible_python_interpreter: "{{ ansible_playbook_python }}"
+
+# secrets role
+secrets_gcp_project: "adc-pm-demo"
+secrets_ns_username_secret: "ns-username"
+secrets_ns_password_secret: "ns-password"
+
+# cs role. dev and prod own their lbvservers: the playbook loads their group_vars as
+# dev_env and prod_env, so a rename in one place reaches the routes too.
+cs_vserver_name: "kk-ans-common-cs"
+cs_vip: "192.168.42.2"
+cs_default_lbvserver_name: "{{ dev_env.lb_lbvserver_name }}"   # / and unmatched paths
+cs_routes:
+  - name: dev
+    path: /dev
+    lbvserver_name: "{{ dev_env.lb_lbvserver_name }}"
+    priority: 100
+  - name: prod
+    path: /prod
+    lbvserver_name: "{{ prod_env.lb_lbvserver_name }}"
+    priority: 110

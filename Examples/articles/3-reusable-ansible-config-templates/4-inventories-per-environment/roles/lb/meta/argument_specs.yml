@@ -1,0 +1,24 @@
+---
+argument_specs:
+  main:
+    short_description: HTTP load balancer on NetScaler
+    options:
+      lb_state:
+        type: str
+        choices: [present, absent]
+        description: present creates or updates the objects; absent removes them
+      lb_vip:
+        type: str
+        description: NetScaler private VIP. Leave empty for a non-addressable lbvserver behind content switching
+      lb_lbvserver_name:
+        type: str
+        required: true
+        description: Name of the lbvserver
+      lb_servicegroup_name:
+        type: str
+        required: true
+        description: Name of the service group
+      lb_backend_ips:
+        type: list
+        elements: str
+        description: Private IP addresses of the backend web servers

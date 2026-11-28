@@ -1,0 +1,41 @@
+---
+# Reverse dependency order: vserver (and its bindings), then policies, then actions.
+# The LB, CS and Rewrite features are left enabled.
+- name: "CS | Remove content switching vserver {{ cs_vserver_name }}"
+  netscaler.adc.csvserver:
+    state: absent
+    name: "{{ cs_vserver_name }}"
+
+- name: CS | Remove the prefix-stripping rewrite policies
+  netscaler.adc.rewritepolicy:
+    state: absent
+    name: "{{ cs_vserver_name }}-{{ item.name }}-strip-pol"
+  loop: "{{ cs_routes }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: cs_strip_path_prefix
+
+- name: CS | Remove the prefix-stripping rewrite actions
+  netscaler.adc.rewriteaction:
+    state: absent
+    name: "{{ cs_vserver_name }}-{{ item.name }}-strip-act"
+  loop: "{{ cs_routes }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: cs_strip_path_prefix
+
+- name: CS | Remove the content switching policies
+  netscaler.adc.cspolicy:
+    state: absent
+    policyname: "{{ cs_vserver_name }}-{{ item.name }}-pol"
+  loop: "{{ cs_routes }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: CS | Remove the content switching actions
+  netscaler.adc.csaction:
+    state: absent
+    name: "{{ cs_vserver_name }}-{{ item.name }}-act"
+  loop: "{{ cs_routes }}"
+  loop_control:
+    label: "{{ item.name }}"

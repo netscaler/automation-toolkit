@@ -1,0 +1,45 @@
+---
+argument_specs:
+  main:
+    short_description: Path-based content switching on NetScaler
+    options:
+      cs_state:
+        type: str
+        choices: [present, absent]
+        description: present creates or updates the objects; absent removes them
+      cs_vserver_name:
+        type: str
+        required: true
+        description: Name of the content switching vserver
+      cs_vip:
+        type: str
+        required: true
+        description: NetScaler private VIP for the content switching vserver
+      cs_routes:
+        type: list
+        elements: dict
+        required: true
+        description: One entry per route, e.g. /dev -> dev lbvserver
+        options:
+          name:
+            type: str
+            required: true
+            description: Short route name, used in object names
+          path:
+            type: str
+            required: true
+            description: URL path prefix, without the trailing slash
+          lbvserver_name:
+            type: str
+            required: true
+            description: Target lbvserver
+          priority:
+            type: int
+            required: true
+            description: Policy binding priority
+      cs_default_lbvserver_name:
+        type: str
+        description: lbvserver for requests that match no route. Empty for no fallback
+      cs_strip_path_prefix:
+        type: bool
+        description: Remove the route path prefix before forwarding

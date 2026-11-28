@@ -1,0 +1,10 @@
+---
+galaxy_info:
+  role_name: lb
+  author: Konstantinos Kaltsas
+  description: HTTP load balancer on NetScaler - lbvserver plus service group
+  license: MIT
+  min_ansible_version: "2.22"
+  platforms: []
+
+dependencies: []

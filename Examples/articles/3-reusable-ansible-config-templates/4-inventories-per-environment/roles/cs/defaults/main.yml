@@ -1,0 +1,7 @@
+---
+# Optional inputs. cs_vserver_name, cs_vip and cs_routes are required.
+cs_state: present
+# lbvserver for requests that match no route (including /). Empty: no fallback
+cs_default_lbvserver_name: ""
+# Remove the route prefix before forwarding, e.g. /dev/x -> /x
+cs_strip_path_prefix: true

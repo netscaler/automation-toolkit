@@ -1,0 +1,10 @@
+---
+galaxy_info:
+  role_name: cs
+  author: Konstantinos Kaltsas
+  description: Path-based content switching on NetScaler, with optional prefix stripping
+  license: MIT
+  min_ansible_version: "2.22"
+  platforms: []
+
+dependencies: []

@@ -1,0 +1,56 @@
+---
+# Shared content switching on the VIP: <VIP>/dev/* -> dev, <VIP>/prod/* -> prod, with the
+# prefix stripped (/dev/x -> /x). / and any other path go to dev. Apply dev and prod first.
+#   ansible-playbook -i inventories/common playbooks/configure_cs.yml --check --diff
+#   ansible-playbook -i inventories/common playbooks/configure_cs.yml
+- name: "common | Route /dev and /prod to their environments"
+  hosts: netscaler
+  gather_facts: false
+
+  module_defaults:
+    group/netscaler.adc.default_args:
+      nsip: "{{ nsip }}"
+      nitro_user: "{{ ns_username }}"
+      nitro_pass: "{{ ns_password }}"
+      nitro_protocol: https
+      validate_certs: false
+
+  pre_tasks:
+    # dev and prod own their lbvservers. Load their group_vars under a namespace so the
+    # routes in inventories/common/group_vars/all.yml can reference dev_env / prod_env.
+    - name: Load the dev and prod environment settings
+      ansible.builtin.include_vars:
+        file: "{{ playbook_dir }}/../inventories/{{ item }}/group_vars/all.yml"
+        name: "{{ item }}_env"
+      loop: [dev, prod]
+
+  tasks:
+    - name: Read the common credentials
+      ansible.builtin.import_role:
+        name: secrets
+
+    # Ansible has no remote state to depend on. The NetScaler is the source of truth,
+    # so ask it directly: content switching must not run before dev and prod exist.
+    - name: Pre-flight | Look up the dev and prod lbvservers on the NetScaler
+      ansible.builtin.uri:
+        url: "https://{{ nsip }}/nitro/v1/config/lbvserver/{{ item.lbvserver_name }}"
+        method: GET
+        headers:
+          X-NITRO-USER: "{{ ns_username }}"
+          X-NITRO-PASS: "{{ ns_password }}"
+        validate_certs: false
+        status_code: [200, 404]
+      register: preflight
+      check_mode: false   # read-only GET; must also run during --check
+      no_log: true        # the request carries the credentials
+      loop: "{{ cs_routes }}"
+
+    - name: Pre-flight | Stop unless every target lbvserver exists
+      ansible.builtin.assert:
+        that: preflight.results | map(attribute='status') | select('ne', 200) | list | length == 0
+        fail_msg: "Apply playbooks/configure_lb.yml to dev and prod first. Expected lbvservers: {{ cs_routes | map(attribute='lbvserver_name') | join(', ') }}"
+        quiet: true
+
+    - name: Configure content switching
+      ansible.builtin.import_role:
+        name: cs

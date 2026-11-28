@@ -1,0 +1,10 @@
+---
+- name: "LB | Remove lbvserver {{ lb_lbvserver_name }}"
+  netscaler.adc.lbvserver:
+    state: absent
+    name: "{{ lb_lbvserver_name }}"
+
+- name: "LB | Remove service group {{ lb_servicegroup_name }}"
+  netscaler.adc.servicegroup:
+    state: absent
+    servicegroupname: "{{ lb_servicegroup_name }}"

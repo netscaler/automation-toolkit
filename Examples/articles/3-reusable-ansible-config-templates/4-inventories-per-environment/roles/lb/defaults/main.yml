@@ -1,0 +1,6 @@
+---
+# Optional inputs. lb_lbvserver_name and lb_servicegroup_name are required.
+lb_state: present
+# Empty: a non-addressable lbvserver, reached through content switching
+lb_vip: ""
+lb_backend_ips: []

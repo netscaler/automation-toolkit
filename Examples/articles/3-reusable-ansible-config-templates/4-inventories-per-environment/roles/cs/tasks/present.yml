@@ -1,0 +1,89 @@
+---
+- name: CS | Enable the LB, CS and Rewrite features
+  netscaler.adc.nsfeature:
+    state: enabled
+    feature: "{{ cs_features }}"
+
+# One action, policy and binding per route, e.g. /dev -> dev lbvserver
+- name: CS | Create one content switching action per route
+  netscaler.adc.csaction:
+    state: present
+    name: "{{ cs_vserver_name }}-{{ item.name }}-act"
+    targetlbvserver: "{{ item.lbvserver_name }}"
+  loop: "{{ cs_routes }}"
+  loop_control:
+    label: "{{ item.path }} -> {{ item.lbvserver_name }}"
+
+- name: CS | Create one content switching policy per route
+  netscaler.adc.cspolicy:
+    state: present
+    policyname: "{{ cs_vserver_name }}-{{ item.name }}-pol"
+    rule: 'HTTP.REQ.URL.PATH.EQ("{{ item.path }}") || HTTP.REQ.URL.PATH.STARTSWITH("{{ item.path }}/")'
+    action: "{{ cs_vserver_name }}-{{ item.name }}-act"
+  loop: "{{ cs_routes }}"
+  loop_control:
+    label: "{{ item.path }}"
+
+# Strip the route prefix before the request reaches the backend: /dev/x -> /x, /dev -> /
+# Content switching is decided before rewrite runs, so routing still sees the original path
+- name: CS | Create one prefix-stripping rewrite action per route
+  netscaler.adc.rewriteaction:
+    state: present
+    name: "{{ cs_vserver_name }}-{{ item.name }}-strip-act"
+    type: replace
+    target: HTTP.REQ.URL.PATH
+    stringbuilderexpr: '"/" + HTTP.REQ.URL.PATH.AFTER_STR("{{ item.path }}").STRIP_START_CHARS("/")'
+  loop: "{{ cs_routes }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when: cs_strip_path_prefix
+
+- name: CS | Create one prefix-stripping rewrite policy per route
+  netscaler.adc.rewritepolicy:
+    state: present
+    name: "{{ cs_vserver_name }}-{{ item.name }}-strip-pol"
+    rule: 'HTTP.REQ.URL.PATH.EQ("{{ item.path }}") || HTTP.REQ.URL.PATH.STARTSWITH("{{ item.path }}/")'
+    action: "{{ cs_vserver_name }}-{{ item.name }}-strip-act"
+  loop: "{{ cs_routes }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when: cs_strip_path_prefix
+
+- name: CS | Build the binding lists from the routes
+  ansible.builtin.set_fact:
+    cs_policy_bindings: "{{ cs_policy_bindings | default([]) + [policy_binding] }}"
+    cs_rewrite_bindings: "{{ cs_rewrite_bindings | default([]) + ([rewrite_binding] if cs_strip_path_prefix else []) }}"
+  vars:
+    policy_binding:
+      name: "{{ cs_vserver_name }}"
+      policyname: "{{ cs_vserver_name }}-{{ item.name }}-pol"
+      priority: "{{ item.priority }}"
+    rewrite_binding:
+      name: "{{ cs_vserver_name }}"
+      policyname: "{{ cs_vserver_name }}-{{ item.name }}-strip-pol"
+      priority: "{{ item.priority }}"
+      bindpoint: REQUEST
+      gotopriorityexpression: END
+  loop: "{{ cs_routes }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: "CS | Create content switching vserver {{ cs_vserver_name }} and bind its policies"
+  netscaler.adc.csvserver:
+    state: present
+    name: "{{ cs_vserver_name }}"
+    ipv46: "{{ cs_vip }}"
+    port: "{{ cs_port }}"
+    servicetype: "{{ cs_servicetype }}"
+    # desired: any binding not listed here is removed, so manual additions show up as drift
+    csvserver_cspolicy_binding:
+      mode: desired
+      binding_members: "{{ cs_policy_bindings }}"
+    csvserver_rewritepolicy_binding:
+      mode: desired
+      binding_members: "{{ cs_rewrite_bindings }}"
+    # Fallback: requests that match no route (including /) go here
+    csvserver_lbvserver_binding:
+      mode: desired
+      binding_members: "{{ [{'name': cs_vserver_name, 'lbvserver': cs_default_lbvserver_name}]
+                           if cs_default_lbvserver_name | length > 0 else [] }}"

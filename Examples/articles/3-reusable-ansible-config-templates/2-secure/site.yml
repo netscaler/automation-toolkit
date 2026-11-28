@@ -1,0 +1,62 @@
+---
+# Use case 2 - Secure: the credentials come from GCP Secret Manager.
+# The tasks are identical to 1-simple; only where the credentials come from changed.
+#   ansible-playbook site.yml --check --diff
+#   ansible-playbook site.yml
+- name: "2-secure | Configure load balancing on NetScaler"
+  hosts: netscaler
+  gather_facts: false
+
+  module_defaults:
+    group/netscaler.adc.default_args:
+      nsip: "{{ nsip }}"
+      nitro_user: "{{ ns_username }}"
+      nitro_pass: "{{ ns_password }}"
+      nitro_protocol: https
+      validate_certs: false
+
+  pre_tasks:
+    # Read once per run. no_log keeps the values out of the console and any log callback.
+    - name: Read the NetScaler credentials from GCP Secret Manager
+      ansible.builtin.set_fact:
+        ns_username: "{{ lookup('google.cloud.gcp_secret_manager', key='ns-username', project=gcp_project,
+                         auth_kind='serviceaccount', service_account_file=gcp_service_account_file) }}"
+        ns_password: "{{ lookup('google.cloud.gcp_secret_manager', key='ns-password', project=gcp_project,
+                         auth_kind='serviceaccount', service_account_file=gcp_service_account_file) }}"
+      no_log: true
+
+  tasks:
+    - name: Build the service group member list from the backend IP addresses
+      ansible.builtin.set_fact:
+        servicegroup_members: "{{ servicegroup_members | default([]) + [member] }}"
+      vars:
+        member:
+          servicegroupname: kk-ans-test-servicegroup
+          ip: "{{ item }}"
+          port: 80
+          weight: 1
+      loop: "{{ apps_private_ip_addresses }}"
+
+    - name: Create the service group and bind the backend members
+      netscaler.adc.servicegroup:
+        state: present
+        servicegroupname: kk-ans-test-servicegroup
+        servicetype: HTTP
+        clttimeout: 40
+        servicegroup_servicegroupmember_binding:
+          mode: desired
+          binding_members: "{{ servicegroup_members }}"
+
+    - name: Create the load balancing vserver and bind the service group
+      netscaler.adc.lbvserver:
+        state: present
+        name: kk-ans-test-lb
+        ipv46: "{{ netscaler_private_vip }}"
+        port: 80
+        servicetype: HTTP
+        lbmethod: ROUNDROBIN
+        lbvserver_servicegroup_binding:
+          mode: desired
+          binding_members:
+            - name: kk-ans-test-lb
+              servicename: kk-ans-test-servicegroup
