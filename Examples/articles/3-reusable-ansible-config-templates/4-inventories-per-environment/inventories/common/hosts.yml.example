@@ -1,0 +1,7 @@
+---
+# Copy to hosts.yml and adjust. hosts.yml is gitignored: it holds the NSIP.
+# Shared content switching settings live in group_vars/all.yml.
+netscaler:
+  hosts:
+    netscaler-vpx:
+      nsip: "<NSIP>"

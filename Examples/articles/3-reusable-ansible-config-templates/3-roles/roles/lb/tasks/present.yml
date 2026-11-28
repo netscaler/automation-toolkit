@@ -1,0 +1,41 @@
+---
+# set_fact persists on the host for the rest of the play, so start from an empty
+# list: a second call of this role must not inherit the first call's members.
+- name: LB | Reset the service group member list
+  ansible.builtin.set_fact:
+    lb_servicegroup_members: []
+
+- name: LB | Build the service group member list from the backend IP addresses
+  ansible.builtin.set_fact:
+    lb_servicegroup_members: "{{ lb_servicegroup_members + [member] }}"
+  vars:
+    member:
+      servicegroupname: "{{ lb_servicegroup_name }}"
+      ip: "{{ item }}"
+      port: "{{ lb_member_port }}"
+      weight: "{{ lb_member_weight }}"
+  loop: "{{ lb_backend_ips }}"
+
+- name: "LB | Create service group {{ lb_servicegroup_name }} and bind the backend members"
+  netscaler.adc.servicegroup:
+    state: present
+    servicegroupname: "{{ lb_servicegroup_name }}"
+    servicetype: "{{ lb_servicetype }}"
+    clttimeout: "{{ lb_clttimeout }}"
+    servicegroup_servicegroupmember_binding:
+      mode: desired
+      binding_members: "{{ lb_servicegroup_members | default([]) }}"   # empty list = no members
+
+- name: "LB | Create lbvserver {{ lb_lbvserver_name }} and bind the service group"
+  netscaler.adc.lbvserver:
+    state: present
+    name: "{{ lb_lbvserver_name }}"
+    ipv46: "{{ lb_vip }}"
+    port: "{{ lb_port }}"
+    servicetype: "{{ lb_servicetype }}"
+    lbmethod: "{{ lb_method }}"
+    lbvserver_servicegroup_binding:
+      mode: desired
+      binding_members:
+        - name: "{{ lb_lbvserver_name }}"
+          servicename: "{{ lb_servicegroup_name }}"

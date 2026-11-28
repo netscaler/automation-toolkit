@@ -1,0 +1,19 @@
+---
+# One playbook for every environment: the inventory decides which one.
+#   ansible-playbook -i inventories/dev  playbooks/configure_lb.yml --check --diff
+#   ansible-playbook -i inventories/prod playbooks/configure_lb.yml
+- name: "Configure the environment's load balancer"
+  hosts: netscaler
+  gather_facts: false
+
+  module_defaults:
+    group/netscaler.adc.default_args:
+      nsip: "{{ nsip }}"
+      nitro_user: "{{ ns_username }}"
+      nitro_pass: "{{ ns_password }}"
+      nitro_protocol: https
+      validate_certs: false
+
+  roles:
+    - secrets   # sets ns_username / ns_password from this environment's secrets
+    - lb        # inputs come from inventories/<env>/group_vars/all.yml

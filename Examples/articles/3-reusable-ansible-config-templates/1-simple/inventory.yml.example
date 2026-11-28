@@ -1,0 +1,18 @@
+---
+# Copy to inventory.yml and adjust. inventory.yml is gitignored.
+netscaler:
+  hosts:
+    netscaler-vpx:
+      nsip: "<NSIP>"
+  vars:
+    # Modules call the NITRO API from the control node; nothing runs on the appliance
+    ansible_connection: local
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
+
+    ns_username: "<NS_USERNAME>"
+    ns_password: "<NS_PASSWORD>"            # plaintext, next to the code
+
+    netscaler_private_vip: "192.168.42.2"
+    apps_private_ip_addresses:
+      - "10.156.0.10"
+      - "10.156.0.11"

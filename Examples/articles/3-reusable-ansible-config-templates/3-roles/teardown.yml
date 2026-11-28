@@ -1,0 +1,32 @@
+---
+# Same role, opposite state.
+#   ansible-playbook teardown.yml --check --diff
+#   ansible-playbook teardown.yml
+- name: "3-roles | Remove load balancing from NetScaler"
+  hosts: netscaler
+  gather_facts: false
+
+  module_defaults:
+    group/netscaler.adc.default_args:
+      nsip: "{{ nsip }}"
+      nitro_user: "{{ ns_username }}"
+      nitro_pass: "{{ ns_password }}"
+      nitro_protocol: https
+      validate_certs: false
+
+  pre_tasks:
+    - name: Read the NetScaler credentials from GCP Secret Manager
+      ansible.builtin.set_fact:
+        ns_username: "{{ lookup('google.cloud.gcp_secret_manager', key='ns-username', project=gcp_project,
+                         auth_kind='serviceaccount', service_account_file=gcp_service_account_file) }}"
+        ns_password: "{{ lookup('google.cloud.gcp_secret_manager', key='ns-password', project=gcp_project,
+                         auth_kind='serviceaccount', service_account_file=gcp_service_account_file) }}"
+      no_log: true
+
+  roles:
+    - role: lb
+      vars:
+        lb_state: absent
+        lb_vip: "{{ netscaler_private_vip }}"
+        lb_lbvserver_name: "{{ lbvserver_name }}"
+        lb_servicegroup_name: "{{ servicegroup_name }}"

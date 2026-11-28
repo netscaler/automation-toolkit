@@ -1,0 +1,35 @@
+---
+# Run first: the content switching actions target the dev and prod lbvservers.
+#   ansible-playbook -i inventories/common playbooks/remove_cs.yml --check --diff
+#   ansible-playbook -i inventories/common playbooks/remove_cs.yml
+- name: "common | Remove content switching"
+  hosts: netscaler
+  gather_facts: false
+
+  module_defaults:
+    group/netscaler.adc.default_args:
+      nsip: "{{ nsip }}"
+      nitro_user: "{{ ns_username }}"
+      nitro_pass: "{{ ns_password }}"
+      nitro_protocol: https
+      validate_certs: false
+
+  pre_tasks:
+    # dev and prod own their lbvservers. Load their group_vars under a namespace so the
+    # routes in inventories/common/group_vars/all.yml can reference dev_env / prod_env.
+    - name: Load the dev and prod environment settings
+      ansible.builtin.include_vars:
+        file: "{{ playbook_dir }}/../inventories/{{ item }}/group_vars/all.yml"
+        name: "{{ item }}_env"
+      loop: [dev, prod]
+
+  tasks:
+    - name: Read the common credentials
+      ansible.builtin.import_role:
+        name: secrets
+
+    - name: Remove content switching
+      ansible.builtin.import_role:
+        name: cs
+      vars:
+        cs_state: absent

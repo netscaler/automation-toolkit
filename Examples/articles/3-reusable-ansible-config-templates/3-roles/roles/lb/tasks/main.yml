@@ -1,0 +1,3 @@
+---
+- name: "LB | Ensure the load balancer is {{ lb_state }}"
+  ansible.builtin.include_tasks: "{{ lb_state }}.yml"

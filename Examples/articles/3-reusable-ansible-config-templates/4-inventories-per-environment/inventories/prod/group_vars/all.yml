@@ -1,0 +1,17 @@
+---
+# prod environment. Variable names are the role inputs, so the playbooks need no mapping.
+# playbooks/configure_cs.yml reads lb_lbvserver_name from this file.
+ansible_connection: local
+ansible_python_interpreter: "{{ ansible_playbook_python }}"
+
+# secrets role: this environment's own credentials, so prod never holds another environment's password
+secrets_gcp_project: "adc-pm-demo"
+secrets_ns_username_secret: "prod-ns-username"
+secrets_ns_password_secret: "prod-ns-password"
+
+# lb role. No lb_vip: the common content switching vserver owns the VIP
+lb_lbvserver_name: "kk-ans-prod-lb"
+lb_servicegroup_name: "kk-ans-prod-servicegroup"
+lb_backend_ips:
+  - "10.156.0.13"
+  - "10.156.0.12"

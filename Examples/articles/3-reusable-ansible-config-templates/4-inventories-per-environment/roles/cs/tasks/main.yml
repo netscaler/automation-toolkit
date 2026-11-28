@@ -1,0 +1,3 @@
+---
+- name: "CS | Ensure content switching is {{ cs_state }}"
+  ansible.builtin.include_tasks: "{{ cs_state }}.yml"

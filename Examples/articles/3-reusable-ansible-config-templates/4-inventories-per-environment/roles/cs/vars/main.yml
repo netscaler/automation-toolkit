@@ -1,0 +1,9 @@
+---
+cs_servicetype: HTTP
+cs_port: 80
+# Content switching and rewrite are disabled by default. Policies still bind
+# while a feature is off, but they are never evaluated.
+cs_features:
+  - LB
+  - CS
+  - REWRITE

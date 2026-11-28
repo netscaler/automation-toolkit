@@ -1,0 +1,5 @@
+---
+# Optional inputs. Required inputs (lb_vip, lb_lbvserver_name, lb_servicegroup_name)
+# have no default on purpose: meta/argument_specs.yml fails the run if they are missing.
+lb_state: present
+lb_backend_ips: []

@@ -1,0 +1,9 @@
+---
+# Pin every collection.
+# Install from ansible/configuration/gcp:
+#   ansible-galaxy collection install -r requirements.yml
+collections:
+  - name: netscaler.adc
+    version: "3.0.0"
+  - name: google.cloud          # gcp_secret_manager lookup (use cases 2-4)
+    version: "1.15.0"

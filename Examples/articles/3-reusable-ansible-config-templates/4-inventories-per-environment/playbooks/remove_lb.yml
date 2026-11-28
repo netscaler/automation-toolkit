@@ -1,0 +1,21 @@
+---
+# Run playbooks/remove_cs.yml first: its content switching actions target this lbvserver.
+#   ansible-playbook -i inventories/dev playbooks/remove_lb.yml --check --diff
+#   ansible-playbook -i inventories/dev playbooks/remove_lb.yml
+- name: "Remove the environment's load balancer"
+  hosts: netscaler
+  gather_facts: false
+
+  module_defaults:
+    group/netscaler.adc.default_args:
+      nsip: "{{ nsip }}"
+      nitro_user: "{{ ns_username }}"
+      nitro_pass: "{{ ns_password }}"
+      nitro_protocol: https
+      validate_certs: false
+
+  roles:
+    - secrets
+    - role: lb
+      vars:
+        lb_state: absent
